@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "columntype=top": {
+      "model": "gothicafflictions:block/hematite_pillar_upper"
+    },
+    "columntype=bottom": {
+      "model": "gothicafflictions:block/hematite_pillar_lower"
+    },
+    "columntype=middle": {
+      "model": "gothicafflictions:block/hematite_pillar_middle"
+    },
+    "columntype=none": {
+      "model": "gothicafflictions:block/hematite_pillar"
+    }
+  }
+}

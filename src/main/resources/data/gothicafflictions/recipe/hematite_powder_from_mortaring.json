@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gothicafflictions:hematite_nugget"
+    },
+    {
+      "item": "gothicafflictions:mortar_and_pestle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "gothicafflictions:hematite_powder"
+  }
+}

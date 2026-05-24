@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "gothicafflictions:hematite_block",
+    "gothicafflictions:hematite_bricks",
+    "gothicafflictions:hematite_ore",
+    "gothicafflictions:deepslate_hematite_ore"
+  ]
+}
