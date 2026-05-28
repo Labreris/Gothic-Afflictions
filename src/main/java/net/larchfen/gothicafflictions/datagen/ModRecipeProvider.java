@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
 import java.util.List;
@@ -80,11 +81,26 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.SANGUINITE_BLOCK)
                 .unlockedBy("has_sanguinite_block", has(ModBlocks.SANGUINITE_BLOCK)).save(recipeOutput, "gothicafflictions:sanguinite_ingot_from_block");
 
+        // NON-BLOCK BLOCK RECIPES GO HERE
+
+        wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_WALL.get(), ModBlocks.POLISHED_HEMATITE.get());
+
+        stairBuilder(ModBlocks.POLISHED_HEMATITE_STAIRS.get(), Ingredient.of(ModBlocks.POLISHED_HEMATITE)).group("polished_hematite")
+                .unlockedBy("has_polished_hematite", has(ModBlocks.POLISHED_HEMATITE)).save(recipeOutput);
+
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_SLAB.get(), ModBlocks.POLISHED_HEMATITE.get());
+
+        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_SLAB.get(),ModBlocks.POLISHED_HEMATITE.get(), 2);
+
         // SMELTING RECIPES GO HERE
 
         List<ItemLike> HEMATITE_SMELTABLES = List.of(ModBlocks.HEMATITE_ORE, ModBlocks.DEEPSLATE_HEMATITE_ORE);
         oreSmelting(recipeOutput, HEMATITE_SMELTABLES, RecipeCategory.MISC, ModItems.HEMATITE.get(), 0.25f, 200, "hematite");
         oreBlasting(recipeOutput, HEMATITE_SMELTABLES, RecipeCategory.MISC, ModItems.HEMATITE.get(), 0.25f, 100, "hematite");
+
+        List<ItemLike> TALCUM_SMELTABLES = List.of(ModBlocks.TALCUM_ORE, ModBlocks.CALCITE_TALCUM_ORE);
+        oreSmelting(recipeOutput, TALCUM_SMELTABLES, RecipeCategory.MISC, ModItems.TALCUM.get(), 0.25f, 200, "talcum");
+        oreBlasting(recipeOutput, TALCUM_SMELTABLES, RecipeCategory.MISC, ModItems.TALCUM.get(), 0.25f, 100, "talcum");
     }
         protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
         float pExperience, int pCookingTIme, String pGroup) {
@@ -104,5 +120,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
                         .save(recipeOutput, GothicAfflictions.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
             }
+        }
+
+        // REMEMBER: ALSO ADD THE CORRECT RECIPE ABOVE (FOLLOW SMELTING FORMATTING)
+        protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory pCategory, ItemLike pResult, ItemLike pMaterial, int pResultCount) {
+        SingleItemRecipeBuilder var10000 = SingleItemRecipeBuilder.stonecutting(Ingredient.of(pMaterial), pCategory, pResult, pResultCount).unlockedBy(getHasName(pMaterial), has(pMaterial));
+        String var10002 = getConversionRecipeName(pResult, pMaterial);
+        var10000.save(recipeOutput, var10002 + "_stonecutting");
+
     }
 }

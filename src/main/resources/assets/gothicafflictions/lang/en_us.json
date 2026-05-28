@@ -10,11 +10,18 @@
   "item.gothicafflictions.silver_ingot": "Silver Ingot",
   "item.gothicafflictions.bloodstone": "Bloodstone",
   "item.gothicafflictions.garlic": "Garlic Bulb",
+  "item.gothicafflictions.burning_alkahest": "Burning Alkahest",
+  "item.gothicafflictions.alchemical_flame": "Alchemical Flame",
 
   "block.gothicafflictions.hematite_block": "Block of Hematite",
+
   "block.gothicafflictions.hematite_bricks": "Hematite Bricks",
   "block.gothicafflictions.polished_hematite": "Polished Hematite",
+  "block.gothicafflictions.polished_hematite_slab": "Polished Hematite Slab",
+  "block.gothicafflictions.polished_hematite_stairs": "Polished Hematite Stairs",
+  "block.gothicafflictions.polished_hematite_wall": "Polished Hematite Wall",
   "block.gothicafflictions.hematite_pillar": "Hematite Pillar",
+
   "block.gothicafflictions.hematite_ore": "Hematite Ore",
   "block.gothicafflictions.deepslate_hematite_ore": "Deepslate Hematite Ore",
   "block.gothicafflictions.talcum_block": "Block of Talcum",

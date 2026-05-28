@@ -1,4 +1,4 @@
-package net.larchfen.gothicafflictions.item.custom;
+package net.larchfen.gothicafflictions.item;
 
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;

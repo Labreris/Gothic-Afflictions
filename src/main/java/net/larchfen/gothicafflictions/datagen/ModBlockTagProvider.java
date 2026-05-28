@@ -40,5 +40,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.NEEDS_IRON_TOOL)
                 .add(ModBlocks.SANGUINITE_BLOCK.get());
+
+        tag(BlockTags.WALLS)
+                .add(ModBlocks.POLISHED_HEMATITE_WALL.get());
     }
 }

@@ -16,6 +16,7 @@ import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.neoforged.fml.common.Mod;
 
 
 import java.util.Set;
@@ -31,6 +32,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HEMATITE_BRICKS.get());
         dropSelf(ModBlocks.HEMATITE_PILLAR.get());
         dropSelf(ModBlocks.POLISHED_HEMATITE.get());
+        dropSelf(ModBlocks.POLISHED_HEMATITE_WALL.get());
+        dropSelf(ModBlocks.POLISHED_HEMATITE_STAIRS.get());
+        add(ModBlocks.POLISHED_HEMATITE_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.POLISHED_HEMATITE_SLAB.get()));
 
         dropSelf(ModBlocks.TALCUM_BLOCK.get());
 

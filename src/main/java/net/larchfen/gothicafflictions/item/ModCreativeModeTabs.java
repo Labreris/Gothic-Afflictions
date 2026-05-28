@@ -35,6 +35,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.SILVER_INGOT);
                         output.accept(ModItems.BLOODSTONE);
                         output.accept(ModItems.GARLIC);
+                        output.accept(ModItems.ALCHEMICAL_FLAME);
+                        output.accept(ModItems.BURNING_ALKAHEST);
 
                     }).build());
 
@@ -54,6 +56,9 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.HEMATITE_BRICKS);
                         output.accept(ModBlocks.HEMATITE_PILLAR);
                         output.accept(ModBlocks.POLISHED_HEMATITE);
+                        output.accept(ModBlocks.POLISHED_HEMATITE_SLAB);
+                        output.accept(ModBlocks.POLISHED_HEMATITE_WALL);
+                        output.accept(ModBlocks.POLISHED_HEMATITE_STAIRS);
                         output.accept(ModBlocks.TALCUM_ORE);
                         output.accept(ModBlocks.CALCITE_TALCUM_ORE);
                         output.accept(ModBlocks.TALCUM_BLOCK);
