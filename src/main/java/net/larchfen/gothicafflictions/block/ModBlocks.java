@@ -21,8 +21,9 @@ public class ModBlocks {
             DeferredRegister.createBlocks(GothicAfflictions.MOD_ID);
 
     // NEW BLOCKS GO HERE:
-    // ORDER OF THINGS TO DO PER NEW BLOCK: 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD BLOCKSTATES 4. ADD BLOCK MODEL
-    // 5. ADD ITEM MODEL 6. ADD ASSETS 7. ADD TRANSLATION 8. ADD RECIPES AND LOOTTABLE 9. ADD MINEABILITY
+    // ORDER OF THINGS TO DO PER NEW BLOCK:
+    // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
+    // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
 
     public static final DeferredBlock<Block> HEMATITE_BLOCK = registerBlock("hematite_block",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -31,6 +32,12 @@ public class ModBlocks {
             .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> HEMATITE_BRICKS = registerBlock("hematite_bricks",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> POLISHED_HEMATITE = registerBlock("polished_hematite",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f)
                     .requiresCorrectToolForDrops()
@@ -74,6 +81,13 @@ public class ModBlocks {
                     .strength(0.75f)
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.CALCITE)
+            ));
+
+    public static final DeferredBlock<Block> SANGUINITE_BLOCK = registerBlock("sanguinite_block",
+            () -> new DropExperienceBlock(UniformInt.of(4, 8), BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK)
             ));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {

@@ -1,21 +1,26 @@
 {
+  "item.gothicafflictions.mortar_and_pestle": "Mortar and Pestle",
+  "item.gothicafflictions.chisel": "Chisel",
   "item.gothicafflictions.hematite": "Hematite Shard",
   "item.gothicafflictions.hematite_nugget": "Hematite Nugget",
   "item.gothicafflictions.hematite_powder": "Hematite Powder",
   "item.gothicafflictions.talcum": "Talcum",
   "item.gothicafflictions.talcum_powder": "Talcum Powder",
-  "item.gothicafflictions.mortar_and_pestle": "Mortar and Pestle",
-  "item.gothicafflictions.chisel": "Chisel",
+  "item.gothicafflictions.sanguinite_ingot": "Sanguinite Ingot",
+  "item.gothicafflictions.silver_ingot": "Silver Ingot",
+  "item.gothicafflictions.bloodstone": "Bloodstone",
+  "item.gothicafflictions.garlic": "Garlic Bulb",
 
   "block.gothicafflictions.hematite_block": "Block of Hematite",
   "block.gothicafflictions.hematite_bricks": "Hematite Bricks",
+  "block.gothicafflictions.polished_hematite": "Polished Hematite",
   "block.gothicafflictions.hematite_pillar": "Hematite Pillar",
   "block.gothicafflictions.hematite_ore": "Hematite Ore",
   "block.gothicafflictions.deepslate_hematite_ore": "Deepslate Hematite Ore",
   "block.gothicafflictions.talcum_block": "Block of Talcum",
   "block.gothicafflictions.talcum_ore": "Talcum Ore",
   "block.gothicafflictions.calcite_talcum_ore": "Calcite Talcum Ore",
-
+  "block.gothicafflictions.sanguinite_block": "Block of Sanguinite",
 
   "creativetab.gothicafflictions.gothic_affliction_items": "Gothic Afflictions Items",
   "creativetab.gothicafflictions.gothic_affliction_blocks": "Gothic Afflictions Blocks"

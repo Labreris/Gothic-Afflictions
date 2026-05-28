@@ -1,16 +1,16 @@
 {
   "variants": {
-    "columntype=top": {
-      "model": "gothicafflictions:block/hematite_pillar_upper"
-    },
-    "columntype=bottom": {
-      "model": "gothicafflictions:block/hematite_pillar_lower"
-    },
-    "columntype=middle": {
-      "model": "gothicafflictions:block/hematite_pillar_middle"
-    },
-    "columntype=none": {
-      "model": "gothicafflictions:block/hematite_pillar"
-    }
+    "type=none,axis=x": {"model": "gothicafflictions:block/column/hematite_pillar","x": 90,"y": 90},
+    "type=none,axis=y": {"model": "gothicafflictions:block/column/hematite_pillar"},
+    "type=none,axis=z": {"model": "gothicafflictions:block/column/hematite_pillar","x": 90},
+    "type=top,axis=x": {"model": "gothicafflictions:block/column/hematite_pillar_top","x": 90,"y": 90},
+    "type=top,axis=y": {"model": "gothicafflictions:block/column/hematite_pillar_top"},
+    "type=top,axis=z": {"model": "gothicafflictions:block/column/hematite_pillar_top","x": 270},
+    "type=middle,axis=x": {"model": "gothicafflictions:block/column/hematite_pillar_middle","x": 90,"y": 90},
+    "type=middle,axis=y": {"model": "gothicafflictions:block/column/hematite_pillar_middle"},
+    "type=middle,axis=z": {"model": "gothicafflictions:block/column/hematite_pillar_middle","x": 270},
+    "type=bottom,axis=x": {"model": "gothicafflictions:block/column/hematite_pillar_bottom","x": 90,"y": 90},
+    "type=bottom,axis=y": {"model": "gothicafflictions:block/column/hematite_pillar_bottom"},
+    "type=bottom,axis=z": {"model": "gothicafflictions:block/column/hematite_pillar_bottom","x": 270}
   }
 }

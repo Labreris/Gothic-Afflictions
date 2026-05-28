@@ -18,19 +18,23 @@ public class ModCreativeModeTabs {
 
     public static final Supplier<CreativeModeTab> GOTHIC_AFFLICTIONS_ITEMS_TAB = CREATIVE_MODE_TAB.register("gothic_afflictions_items_tab",
             () -> CreativeModeTab.builder()
-                    .icon(() -> new ItemStack(ModItems.HEMATITE.get()))
+                    .icon(() -> new ItemStack(ModItems.BLOODSTONE.get()))
                     .title(Component.translatable("creativetab.gothicafflictions.gothic_affliction_items"))
                     .displayItems((itemDisplayParameters, output) -> {
 
                       //CREATIVE MODE TAB ITEMS GO HERE
 
+                        output.accept(ModItems.MORTAR_AND_PESTLE);
+                        output.accept(ModItems.CHISEL);
                         output.accept(ModItems.HEMATITE);
                         output.accept(ModItems.HEMATITE_NUGGET);
                         output.accept(ModItems.HEMATITE_POWDER);
                         output.accept(ModItems.TALCUM);
                         output.accept(ModItems.TALCUM_POWDER);
-                        output.accept(ModItems.MORTAR_AND_PESTLE);
-                        output.accept(ModItems.CHISEL);
+                        output.accept(ModItems.SANGUINITE_INGOT);
+                        output.accept(ModItems.SILVER_INGOT);
+                        output.accept(ModItems.BLOODSTONE);
+                        output.accept(ModItems.GARLIC);
 
                     }).build());
 
@@ -49,9 +53,11 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.HEMATITE_BLOCK);
                         output.accept(ModBlocks.HEMATITE_BRICKS);
                         output.accept(ModBlocks.HEMATITE_PILLAR);
+                        output.accept(ModBlocks.POLISHED_HEMATITE);
                         output.accept(ModBlocks.TALCUM_ORE);
                         output.accept(ModBlocks.CALCITE_TALCUM_ORE);
                         output.accept(ModBlocks.TALCUM_BLOCK);
+                        output.accept(ModBlocks.SANGUINITE_BLOCK);
 
                     }).build());
 

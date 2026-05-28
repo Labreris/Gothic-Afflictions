@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "gothicafflictions:block/column/hematite_pillar_end",
+    "side": "gothicafflictions:block/column/hematite_pillar_top"
+  }
+}

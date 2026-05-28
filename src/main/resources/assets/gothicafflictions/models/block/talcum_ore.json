@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "gothicafflictions:block/talcum_ore"
-  }
-}
