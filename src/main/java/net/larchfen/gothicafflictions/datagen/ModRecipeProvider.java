@@ -3,11 +3,18 @@ package net.larchfen.gothicafflictions.datagen;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.ModBlocks;
 import net.larchfen.gothicafflictions.item.ModItems;
+import net.larchfen.gothicafflictions.util.ModTags;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -18,6 +25,16 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
     public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
         super(output, registries);
     }
+
+    // LIST FOR STONECUTTER OUTPUTS
+    private static final List<ItemLike> POLISHED_HEMATITE_STONECUTTING_OUTPUT = List.of(
+            ModBlocks.HEMATITE_BRICKS.get().asItem(),
+            ModBlocks.HEMATITE_PILLAR.get().asItem(),
+
+            ModBlocks.POLISHED_HEMATITE_STAIRS.get().asItem(),
+            ModBlocks.POLISHED_HEMATITE_SLAB.get().asItem(),
+            ModBlocks.POLISHED_HEMATITE_WALL.get().asItem()
+            );
 
     @Override
     protected void buildRecipes(RecipeOutput recipeOutput) {
@@ -90,10 +107,11 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_SLAB.get(), ModBlocks.POLISHED_HEMATITE.get());
 
-        stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_SLAB.get(),ModBlocks.POLISHED_HEMATITE.get(), 2);
+        // STONECUTTING RECIPES
+
+        stonecutTagToOutputListPlusSlabs(POLISHED_HEMATITE_STONECUTTING_OUTPUT, "polished_hematite_items", ModTags.Items.POLISHED_HEMATITE_ITEMS, recipeOutput);
 
         // SMELTING RECIPES GO HERE
-
         List<ItemLike> HEMATITE_SMELTABLES = List.of(ModBlocks.HEMATITE_ORE, ModBlocks.DEEPSLATE_HEMATITE_ORE);
         oreSmelting(recipeOutput, HEMATITE_SMELTABLES, RecipeCategory.MISC, ModItems.HEMATITE.get(), 0.25f, 200, "hematite");
         oreBlasting(recipeOutput, HEMATITE_SMELTABLES, RecipeCategory.MISC, ModItems.HEMATITE.get(), 0.25f, 100, "hematite");
@@ -102,6 +120,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         oreSmelting(recipeOutput, TALCUM_SMELTABLES, RecipeCategory.MISC, ModItems.TALCUM.get(), 0.25f, 200, "talcum");
         oreBlasting(recipeOutput, TALCUM_SMELTABLES, RecipeCategory.MISC, ModItems.TALCUM.get(), 0.25f, 100, "talcum");
     }
+        // SMELTING RECIPE MAKING LOGIC
         protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
         float pExperience, int pCookingTIme, String pGroup) {
             oreCooking(recipeOutput, RecipeSerializer.SMELTING_RECIPE, SmeltingRecipe::new, pIngredients, pCategory, pResult,
@@ -122,11 +141,58 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             }
         }
 
-        // REMEMBER: ALSO ADD THE CORRECT RECIPE ABOVE (FOLLOW SMELTING FORMATTING)
-        protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory pCategory, ItemLike pResult, ItemLike pMaterial, int pResultCount) {
-        SingleItemRecipeBuilder var10000 = SingleItemRecipeBuilder.stonecutting(Ingredient.of(pMaterial), pCategory, pResult, pResultCount).unlockedBy(getHasName(pMaterial), has(pMaterial));
-        String var10002 = getConversionRecipeName(pResult, pMaterial);
-        var10000.save(recipeOutput, var10002 + "_stonecutting");
+    protected static void stonecutInputItemOutputList(List<ItemLike> stonecutOutputList, String inputTagName, Block inputItem, RecipeOutput recipeOutput) {
+        Ingredient ingredient = Ingredient.of(inputItem);
 
+        for (ItemLike itemLike : stonecutOutputList) {
+            Item itemName = itemLike.asItem();
+            String id = BuiltInRegistries.ITEM.getKey(itemName).getPath();
+
+            stonecutToAmount(ingredient, RecipeCategory.MISC, itemLike, 1)
+                    .unlockedBy(getHasName(ModItems.CHISEL.get()), has(ModItems.CHISEL.get()))
+                    .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID, inputTagName + "_stonecut_to_" + id));
+        }
     }
+
+    protected static void stonecutTagToOutputListPlusSlabs(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
+        Ingredient ingredient = Ingredient.of(inputTag);
+
+        for (ItemLike itemInIndice : stonecutOutputList) {
+
+            Item itemName = itemInIndice.asItem();
+            String id = BuiltInRegistries.ITEM.getKey(itemName).getPath();
+
+            //If the ItemLike output is a slab,
+            //Create stonecutter recipe producing twice the amount of output
+            //Else, function normally
+
+            if (itemInIndice instanceof SlabBlock) { //Whether it is a slab block, or inherits from the SlabBlock class (currently, no block classes inherit from SlabBlocks)
+                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 2) //Any block from the inputTag can produce two slabs from the stonecutOutputList
+                        .unlockedBy(getHasName(ModItems.CHISEL.get()), has(ModItems.CHISEL.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID, inputTagName + "_stonecut_to_" + id));
+            } else {
+                stonecutToAmount(ingredient, RecipeCategory.MISC, itemInIndice, 1)
+                        .unlockedBy(getHasName(ModItems.CHISEL.get()), has(ModItems.CHISEL.get()))
+                        .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID, inputTagName + "_stonecut_to_" + id));
+            }
+        }
+    }
+    protected static void stonecutInputTagToOutputList(List<ItemLike> stonecutOutputList, String inputTagName, TagKey<Item> inputTag, RecipeOutput recipeOutput) {
+        Ingredient ingredient = Ingredient.of(inputTag);
+
+        for (ItemLike itemLike : stonecutOutputList) {
+            Item itemName = itemLike.asItem();
+            String id = BuiltInRegistries.ITEM.getKey(itemName).getPath();
+
+            stonecutToAmount(ingredient, RecipeCategory.MISC, itemLike, 1)
+                    .unlockedBy(getHasName(ModItems.CHISEL.get()), has(ModItems.CHISEL.get()))
+                    .save(recipeOutput, ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID, inputTagName + "_stonecut_to_" + id));
+        }
+    }
+
+        // STONECUTTER RECIPE MAKING METHOD
+        public static SingleItemRecipeBuilder stonecutToAmount(Ingredient ingredient, RecipeCategory category, ItemLike result, int resultCount) {
+        return new SingleItemRecipeBuilder(category, StonecutterRecipe::new, ingredient, result, resultCount);
+        }
 }
+
