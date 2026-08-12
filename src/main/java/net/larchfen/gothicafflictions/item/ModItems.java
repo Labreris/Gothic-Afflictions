@@ -1,9 +1,11 @@
 package net.larchfen.gothicafflictions.item;
 
 import net.larchfen.gothicafflictions.GothicAfflictions;
+import net.larchfen.gothicafflictions.block.ModBlocks;
 import net.larchfen.gothicafflictions.item.custom.ChiselItem;
-import net.larchfen.gothicafflictions.item.custom.FuelItem;
-import net.minecraft.world.item.Item;
+import net.larchfen.gothicafflictions.item.custom.HammerItem;
+import net.larchfen.gothicafflictions.item.custom.ScepterItem;
+import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -42,15 +44,77 @@ public class ModItems {
         public static final DeferredItem<Item> SILVER_INGOT = ITEMS.register("silver_ingot",
                 () -> new Item(new Item.Properties()));
 
+        public static final DeferredItem<Item> SILVER_NUGGET = ITEMS.register("silver_nugget",
+                () -> new Item(new Item.Properties()));
+
         public static final DeferredItem<Item> BLOODSTONE = ITEMS.register("bloodstone",
                 () -> new Item(new Item.Properties()));
+
+        public static final DeferredItem<Item> RAW_SILVER = ITEMS.register("raw_silver",
+                () -> new Item(new Item.Properties()));
+
+        public static final DeferredItem<Item> GARLIC_SEEDS = ITEMS.register("garlic_seeds",
+                () -> new ItemNameBlockItem(ModBlocks.GARLIC_CROP.get(), new Item.Properties()));
 
         public static final DeferredItem<Item> GARLIC = ITEMS.register("garlic",
                 () -> new Item(new Item.Properties().food(ModFoodProperties.GARLIC)));
 
+        // SILVER TOOLS
+        public static final DeferredItem<SwordItem> SILVER_SWORD = ITEMS.register("silver_sword",
+                () -> new SwordItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(SwordItem.createAttributes(ModToolTiers.SILVER, 3, -2.4f))));
+
+        public static final DeferredItem<PickaxeItem> SILVER_PICKAXE = ITEMS.register("silver_pickaxe",
+                () -> new PickaxeItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 1.0f, -2.8f))));
+
+        public static final DeferredItem<ShovelItem> SILVER_SHOVEL = ITEMS.register("silver_shovel",
+                () -> new ShovelItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(ShovelItem.createAttributes(ModToolTiers.SILVER, 1.5f, -3.0f))));
+
+        public static final DeferredItem<AxeItem> SILVER_AXE = ITEMS.register("silver_axe",
+                () -> new AxeItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6, -3.2f))));
+
+        public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_hoe",
+                () -> new HoeItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(HoeItem.createAttributes(ModToolTiers.SILVER, 0, -3.0f))));
+
+        public static final DeferredItem<HammerItem> SILVER_HAMMER = ITEMS.register("silver_hammer",
+                () -> new HammerItem(ModToolTiers.SILVER, new Item.Properties()
+                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 7, -3.5f))));
+
+        // SILVER ARMOR
+
+        public static final DeferredItem<ArmorItem> SILVER_HELMET = ITEMS.register("silver_helmet",
+                () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
+                        new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
+
+        public static final DeferredItem<ArmorItem> SILVER_CHESTPLATE = ITEMS.register("silver_chestplate",
+                () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
+                        new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
+
+        public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.register("silver_leggings",
+                () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
+                        new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(19))));
+
+        public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.register("silver_boots",
+                () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
+                        new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
+
+        // SANGUINITE TOOLS (MIGHT REPLACE LATER)
+
+        public static final DeferredItem<SwordItem> SANGUINITE_SWORD = ITEMS.register("sanguinite_sword",
+                () -> new SwordItem(ModToolTiers.SANGUINITE, new Item.Properties()
+                        .attributes(SwordItem.createAttributes(ModToolTiers.SANGUINITE, 3, -2.4f))));
+
+        public static final DeferredItem<ScepterItem> SANGUINITE_SCEPTER = ITEMS.register("sanguinite_scepter",
+                () -> new ScepterItem(ModToolTiers.SANGUINITE, new Item.Properties()
+                        .attributes(ScepterItem.createAttributes(ModToolTiers.SANGUINITE, 3, -2.4f))));
+
         // TESTING ITEM FOR FUEL CODE
         public static final DeferredItem<Item> ALCHEMICAL_FLAME = ITEMS.register("alchemical_flame",
-                () -> new FuelItem(new Item.Properties(),800));
+                () -> new Item(new Item.Properties()));
         // TESTING ITEM FOR FUEL CODE
         public static final DeferredItem<Item> BURNING_ALKAHEST = ITEMS.register("burning_alkahest",
                 () -> new Item(new Item.Properties()));

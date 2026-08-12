@@ -13,7 +13,14 @@ public class ModTags {
     public static class Blocks {
 
         //MAIN BLOCK CATEGORIES
+        // BLOCK TAG CHECKLIST: 1. ADD IT HERE, 2. ADD TO ModBlockTagProvider
         public static final TagKey<Block> HEMATITE_BLOCKS = createTag("hematite_blocks");
+
+        public static final TagKey<Block> NEEDS_SILVER_TOOL = createTag("needs_silver_tool");
+        public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = createTag("incorrect_for_silver_tool");
+
+        public static final TagKey<Block> NEEDS_SANGUINITE_TOOL = createTag("needs_sanguinite_tool");
+        public static final TagKey<Block> INCORRECT_FOR_SANGUINITE_TOOL = createTag("incorrect_for_sanguinite_tool");
 
         // METHODS
         private static TagKey<Block> createTag(String name) {
@@ -23,8 +30,10 @@ public class ModTags {
 
     public static class Items {
 
-        // This probably needs to be cleaned up/have better names in the future
-        public static final TagKey<Item> POLISHED_HEMATITE_ITEMS = createTag("polished_hematite_items");
+        // ITEM TAG CHECKLIST: 1. ADD IT HERE, 2. ADD TO ModItemTagProvider
+        public static final TagKey<Item> STONECUTTABLE_HEMATITE = createTag("stonecuttable_hematite");
+
+        public static final TagKey<Item> MORTAR_CRUSHABLE_ITEMS = createTag("mortar_crushable_items");
 
         // METHODS
         private static TagKey<Item> createTag(String name) {

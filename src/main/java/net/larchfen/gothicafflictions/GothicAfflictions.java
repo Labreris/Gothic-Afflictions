@@ -1,6 +1,7 @@
 package net.larchfen.gothicafflictions;
 
 import net.larchfen.gothicafflictions.block.ModBlocks;
+import net.larchfen.gothicafflictions.component.ModDataComponents;
 import net.larchfen.gothicafflictions.item.ModCreativeModeTabs;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -46,6 +47,8 @@ public class GothicAfflictions {
         ModItems.register(modEventBus);
         ModBlocks.register(modEventBus);
 
+        ModDataComponents.register(modEventBus);
+
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -63,7 +66,7 @@ public class GothicAfflictions {
         }
 
         if(event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(ModBlocks.HEMATITE_BLOCK);
+            event.accept(ModBlocks.CHISELED_POLISHED_HEMATITE);
             event.accept(ModBlocks.HEMATITE_ORE);
         }
     }

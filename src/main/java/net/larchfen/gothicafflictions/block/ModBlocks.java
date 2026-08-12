@@ -2,6 +2,7 @@ package net.larchfen.gothicafflictions.block;
 
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.custom.ColumnBlock;
+import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
@@ -23,11 +24,33 @@ public class ModBlocks {
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
 
-    public static final DeferredBlock<Block> HEMATITE_BLOCK = registerBlock("hematite_block",
+    public static final DeferredBlock<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.RAW_GOLD_BLOCK)
+            ));
+
+    public static final DeferredBlock<Block> SILVER_BLOCK = registerBlock("silver_block",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.GOLD_BLOCK)
+            ));
+
+    public static final DeferredBlock<Block> SANGUINITE_BLOCK = registerBlock("sanguinite_block",
             () -> new Block(BlockBehaviour.Properties.of()
-            .strength(4f)
-            .requiresCorrectToolForDrops()
-            .sound(SoundType.METAL)));
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.NETHERITE_BLOCK)
+            ));
+
+    public static final DeferredBlock<Block> TALCUM_BLOCK = registerBlock("talcum_block",
+            () -> new Block(BlockBehaviour.Properties.of()
+                    .strength(0.75f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.CALCITE)));
+
+    public static final DeferredBlock<Block> CHISELED_POLISHED_HEMATITE = registerBlock("chiseled_polished_hematite",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.IRON_BLOCK)
+            ));
 
     public static final DeferredBlock<Block> HEMATITE_BRICKS = registerBlock("hematite_bricks",
             () -> new Block(BlockBehaviour.Properties.of()
@@ -36,16 +59,14 @@ public class ModBlocks {
                     .sound(SoundType.METAL)));
 
     public static final DeferredBlock<Block> POLISHED_HEMATITE = registerBlock("polished_hematite",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(4f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)));
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.IRON_BLOCK)
+            ));
 
     public static final DeferredBlock<Block> HEMATITE_PILLAR = registerBlock("hematite_pillar",
-            () -> new ColumnBlock(BlockBehaviour.Properties.of()
-                    .strength(4f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.METAL)));
+            () -> new ColumnBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.IRON_BLOCK)
+            ));
 
     public static final DeferredBlock<StairBlock> POLISHED_HEMATITE_STAIRS = registerBlock("polished_hematite_stairs",
             () -> new StairBlock(ModBlocks.POLISHED_HEMATITE.get().defaultBlockState(),
@@ -66,6 +87,35 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.METAL)));
 
+    public static final DeferredBlock<StairBlock> HEMATITE_BRICK_STAIRS = registerBlock("hematite_brick_stairs",
+            () -> new StairBlock(ModBlocks.HEMATITE_BRICKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.of()
+                            .strength(4f)
+                            .requiresCorrectToolForDrops()
+                            .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<SlabBlock> HEMATITE_BRICK_SLAB = registerBlock("hematite_brick_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<WallBlock> HEMATITE_BRICK_WALL = registerBlock("hematite_brick_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of()
+                    .strength(4f)
+                    .requiresCorrectToolForDrops()
+                    .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<Block> SILVER_ORE = registerBlock("silver_ore",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.GOLD_ORE)
+            ));
+
+    public static final DeferredBlock<Block> DEEPSLATE_SILVER_ORE = registerBlock("deepslate_silver_ore",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)
+            ));
+
     public static final DeferredBlock<Block> HEMATITE_ORE = registerBlock("hematite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of()
                     .strength(3f)
@@ -79,12 +129,6 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.DEEPSLATE)
             ));
-
-    public static final DeferredBlock<Block> TALCUM_BLOCK = registerBlock("talcum_block",
-            () -> new Block(BlockBehaviour.Properties.of()
-                    .strength(0.75f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.CALCITE)));
 
     public static final DeferredBlock<Block> TALCUM_ORE = registerBlock("talcum_ore",
             () -> new DropExperienceBlock(UniformInt.of(4, 8), BlockBehaviour.Properties.of()
@@ -100,12 +144,10 @@ public class ModBlocks {
                     .sound(SoundType.CALCITE)
             ));
 
-    public static final DeferredBlock<Block> SANGUINITE_BLOCK = registerBlock("sanguinite_block",
-            () -> new DropExperienceBlock(UniformInt.of(4, 8), BlockBehaviour.Properties.of()
-                    .strength(4f)
-                    .requiresCorrectToolForDrops()
-                    .sound(SoundType.NETHERITE_BLOCK)
-            ));
+    // IMPORTANT FOR CROP BLOCKS: Use BLOCKS.register instead of registerBlock because we do not want an autogenerated block item
+    // When we do it this way, we can instead make the crop block drop the seed that it is supposed to drop instead of itself.
+    public static final DeferredBlock<Block> GARLIC_CROP = BLOCKS.register("garlic_crop",
+            () -> new GarlicCropBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.BEETROOTS)));
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> toReturn = BLOCKS.register(name, block);
