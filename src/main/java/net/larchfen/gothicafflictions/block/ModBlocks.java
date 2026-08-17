@@ -116,6 +116,11 @@ public class ModBlocks {
                     .ofFullCopy(Blocks.DEEPSLATE_GOLD_ORE)
             ));
 
+    public static final DeferredBlock<Block> END_SILVER_ORE = registerBlock("end_silver_ore",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.GOLD_ORE)
+            ));
+
     public static final DeferredBlock<Block> HEMATITE_ORE = registerBlock("hematite_ore",
             () -> new DropExperienceBlock(UniformInt.of(2, 4), BlockBehaviour.Properties.of()
                     .strength(3f)

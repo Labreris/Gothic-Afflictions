@@ -5,10 +5,13 @@ import net.larchfen.gothicafflictions.block.ModBlocks;
 import net.larchfen.gothicafflictions.item.custom.ChiselItem;
 import net.larchfen.gothicafflictions.item.custom.HammerItem;
 import net.larchfen.gothicafflictions.item.custom.ScepterItem;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
 
 public class ModItems {
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(GothicAfflictions.MOD_ID);
@@ -62,45 +65,115 @@ public class ModItems {
         // SILVER TOOLS
         public static final DeferredItem<SwordItem> SILVER_SWORD = ITEMS.register("silver_sword",
                 () -> new SwordItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(SwordItem.createAttributes(ModToolTiers.SILVER, 3, -2.4f))));
+                        .attributes(SwordItem.createAttributes(ModToolTiers.SILVER, 3, -2.4f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<PickaxeItem> SILVER_PICKAXE = ITEMS.register("silver_pickaxe",
                 () -> new PickaxeItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 1.0f, -2.8f))));
+                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 1.0f, -2.8f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<ShovelItem> SILVER_SHOVEL = ITEMS.register("silver_shovel",
                 () -> new ShovelItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(ShovelItem.createAttributes(ModToolTiers.SILVER, 1.5f, -3.0f))));
+                        .attributes(ShovelItem.createAttributes(ModToolTiers.SILVER, 1.5f, -3.0f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<AxeItem> SILVER_AXE = ITEMS.register("silver_axe",
                 () -> new AxeItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6, -3.2f))));
+                        .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6, -3.2f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<HoeItem> SILVER_HOE = ITEMS.register("silver_hoe",
                 () -> new HoeItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(HoeItem.createAttributes(ModToolTiers.SILVER, 0, -3.0f))));
+                        .attributes(HoeItem.createAttributes(ModToolTiers.SILVER, -2.0f, -1)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<HammerItem> SILVER_HAMMER = ITEMS.register("silver_hammer",
                 () -> new HammerItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 7, -3.5f))));
+                        .attributes(PickaxeItem.createAttributes(ModToolTiers.SILVER, 7, -3.5f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_held_item.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         // SILVER ARMOR
 
         public static final DeferredItem<ArmorItem> SILVER_HELMET = ITEMS.register("silver_helmet",
                 () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.HELMET,
-                        new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(19))));
+                        new Item.Properties().durability(ArmorItem.Type.HELMET.getDurability(11)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_armor.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<ArmorItem> SILVER_CHESTPLATE = ITEMS.register("silver_chestplate",
                 () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.CHESTPLATE,
-                        new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(19))));
+                        new Item.Properties().durability(ArmorItem.Type.CHESTPLATE.getDurability(11)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_armor.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<ArmorItem> SILVER_LEGGINGS = ITEMS.register("silver_leggings",
                 () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.LEGGINGS,
-                        new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(19))));
+                        new Item.Properties().durability(ArmorItem.Type.LEGGINGS.getDurability(11)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_armor.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         public static final DeferredItem<ArmorItem> SILVER_BOOTS = ITEMS.register("silver_boots",
                 () -> new ArmorItem(ModArmorMaterials.SILVER_ARMOR_MATERIAL, ArmorItem.Type.BOOTS,
-                        new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(19))));
+                        new Item.Properties().durability(ArmorItem.Type.BOOTS.getDurability(11)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.silver_armor.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
 
         // SANGUINITE TOOLS (MIGHT REPLACE LATER)
 

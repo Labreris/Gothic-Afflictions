@@ -60,6 +60,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createOreDrop(ModBlocks.SILVER_ORE.get(), ModItems.RAW_SILVER.get()));
         add(ModBlocks.DEEPSLATE_SILVER_ORE.get(),
                 block -> createOreDrop(ModBlocks.DEEPSLATE_SILVER_ORE.get(), ModItems.RAW_SILVER.get()));
+        add(ModBlocks.END_SILVER_ORE.get(),
+                block -> createOreDrop(ModBlocks.END_SILVER_ORE.get(), ModItems.RAW_SILVER.get()));
 
         // FOR ORES THAT DROP MULTIPLES OF ONE ITEM
         add(ModBlocks.TALCUM_ORE.get(),

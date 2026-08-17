@@ -50,10 +50,14 @@
   "block.gothicafflictions.calcite_talcum_ore": "Calcite Talcum Ore",
   "block.gothicafflictions.silver_ore": "Silver Ore",
   "block.gothicafflictions.deepslate_silver_ore": "Deepslate Silver Ore",
+  "block.gothicafflictions.end_silver_ore": "End Silver Ore",
   "block.gothicafflictions.raw_silver_block": "Block of Raw Silver",
   "block.gothicafflictions.silver_block": "Block of Silver",
   "block.gothicafflictions.sanguinite_block": "Block of Sanguinite",
 
   "creativetab.gothicafflictions.gothic_affliction_items": "Gothic Afflictions Items",
-  "creativetab.gothicafflictions.gothic_affliction_blocks": "Gothic Afflictions Blocks"
+  "creativetab.gothicafflictions.gothic_affliction_blocks": "Gothic Afflictions Blocks",
+
+  "tooltip.gothic_afflictions.silver_held_item.tooltip": "§9+3 damage against Undead§r",
+  "tooltip.gothic_afflictions.silver_armor.tooltip": "§9Chance to rebuke Undead§r"
 }

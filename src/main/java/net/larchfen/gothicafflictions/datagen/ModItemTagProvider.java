@@ -44,6 +44,22 @@ public class ModItemTagProvider extends ItemTagsProvider {
                         Items.IRON_NUGGET.asItem(),
                         Items.GOLD_NUGGET.asItem()
                 );
+        tag(ModTags.Items.SILVER_HELD_ITEMS)
+                .add(
+                        ModItems.SILVER_SWORD.get().asItem(),
+                        ModItems.SILVER_PICKAXE.get().asItem(),
+                        ModItems.SILVER_AXE.get().asItem(),
+                        ModItems.SILVER_SHOVEL.get().asItem(),
+                        ModItems.SILVER_HOE.get().asItem(),
+                        ModItems.SILVER_HAMMER.get().asItem()
+                );
+        tag(ModTags.Items.SILVER_ARMOR)
+                .add(
+                        ModItems.SILVER_HELMET.get().asItem(),
+                        ModItems.SILVER_CHESTPLATE.get().asItem(),
+                        ModItems.SILVER_LEGGINGS.get().asItem(),
+                        ModItems.SILVER_BOOTS.get().asItem()
+                );
         tag(ItemTags.SWORDS)
                 .add(
                         ModItems.SILVER_SWORD.get(),

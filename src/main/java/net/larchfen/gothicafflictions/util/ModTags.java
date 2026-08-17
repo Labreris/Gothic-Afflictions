@@ -35,6 +35,9 @@ public class ModTags {
 
         public static final TagKey<Item> MORTAR_CRUSHABLE_ITEMS = createTag("mortar_crushable_items");
 
+        public static final TagKey<Item> SILVER_HELD_ITEMS = createTag("silver_held_items");
+        public static final TagKey<Item> SILVER_ARMOR = createTag("silver_armor");
+
         // METHODS
         private static TagKey<Item> createTag(String name) {
             return ItemTags.create(ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID, name));

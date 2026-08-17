@@ -83,7 +83,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.SANGUINITE_SCEPTER);
 
         // ARMORS
-
         trimmedArmorItem(ModItems.SILVER_HELMET);
         trimmedArmorItem(ModItems.SILVER_CHESTPLATE);
         trimmedArmorItem(ModItems.SILVER_LEGGINGS);

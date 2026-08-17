@@ -86,6 +86,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.TALCUM_BLOCK);
                         output.accept(ModBlocks.SILVER_ORE);
                         output.accept(ModBlocks.DEEPSLATE_SILVER_ORE);
+                        output.accept(ModBlocks.END_SILVER_ORE);
                         output.accept(ModBlocks.RAW_SILVER_BLOCK);
                         output.accept(ModBlocks.SILVER_BLOCK);
                         output.accept(ModBlocks.SANGUINITE_BLOCK);

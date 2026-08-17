@@ -3,22 +3,33 @@ package net.larchfen.gothicafflictions.event;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.larchfen.gothicafflictions.item.custom.HammerItem;
-import net.larchfen.gothicafflictions.item.custom.ScepterItem;
+import net.larchfen.gothicafflictions.util.ModTags;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.tags.TagManager;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.monster.Zombie;
-import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.level.BlockEvent;
+import org.jetbrains.annotations.NotNull;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @EventBusSubscriber(modid = GothicAfflictions.MOD_ID)
@@ -32,14 +43,14 @@ public class ModEvents {
         Player player = event.getPlayer();
         ItemStack mainHandItem = player.getMainHandItem();
 
-        if(mainHandItem.getItem() instanceof HammerItem hammer && player instanceof ServerPlayer serverPlayer) {
+        if (mainHandItem.getItem() instanceof HammerItem hammer && player instanceof ServerPlayer serverPlayer) {
             BlockPos initialBlockPos = event.getPos();
-            if(HARVESTED_BLOCKS.contains(initialBlockPos)) {
+            if (HARVESTED_BLOCKS.contains(initialBlockPos)) {
                 return;
             }
 
-            for(BlockPos pos : HammerItem.getBlocksToBeDestroyed(1, initialBlockPos, serverPlayer)) {
-                if(pos == initialBlockPos || !hammer.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
+            for (BlockPos pos : HammerItem.getBlocksToBeDestroyed(1, initialBlockPos, serverPlayer)) {
+                if (pos == initialBlockPos || !hammer.isCorrectToolForDrops(mainHandItem, event.getLevel().getBlockState(pos))) {
                     continue;
                 }
 
@@ -49,12 +60,31 @@ public class ModEvents {
             }
         }
     }
+
     @SubscribeEvent
-    public static void livingDamage (LivingDamageEvent.Pre event) {
-        if (event.getEntity() instanceof Zombie zombie && event.getSource().getDirectEntity() instanceof Player player) {
-            if(player.getMainHandItem().getItem() == ModItems.SILVER_SWORD.get()) {
-                zombie.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 75, 1));
-                zombie.addEffect(new MobEffectInstance(MobEffects.WITHER, 75, 1));
+    public static void livingDamage(LivingDamageEvent.Pre event) {
+        if (event.getEntity().getType().is(EntityTypeTags.UNDEAD) && event.getSource().getDirectEntity() instanceof Player player) {
+            if (player.getMainHandItem().is(ModTags.Items.SILVER_HELD_ITEMS)) {
+                event.setNewDamage(event.getOriginalDamage() + 3);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void livingDamage( LivingDamageEvent.Post event) {
+        LivingEntity enemyMob = (LivingEntity) event.getSource().getEntity();
+        if (enemyMob != null) {
+            if (enemyMob.getType().is(EntityTypeTags.UNDEAD) && event.getEntity() instanceof Player player) {
+                float chanceToWeakness = 0f;
+                for (ItemStack armorItem : player.getArmorSlots()) {
+                    if (armorItem.is(ModTags.Items.SILVER_ARMOR)) {
+                        chanceToWeakness += 0.18f;
+                    }
+                }
+                if (chanceToWeakness >= player.getRandom().nextFloat()) {
+                    enemyMob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 0));
+                    enemyMob.playSound(SoundEvents.TRIDENT_RETURN,0.8f, 1.5f);
+                }
             }
         }
     }

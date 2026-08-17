@@ -79,6 +79,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .requires(ModBlocks.SANGUINITE_BLOCK)
                 .unlockedBy("has_sanguinite_block", has(ModBlocks.SANGUINITE_BLOCK)).save(recipeOutput, "gothicafflictions:sanguinite_ingot_from_block");
 
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GARLIC_SEEDS.get(), 2)
+                .requires(ModItems.GARLIC)
+                .unlockedBy("has_garlic", has(ModItems.GARLIC)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModItems.GARLIC_SEEDS.get(), 1)
+                .requires(Items.ALLIUM)
+                .unlockedBy("has_ALLIUM", has(Items.ALLIUM)).save(recipeOutput, "gothicafflictions:garlic_seeds_from_allium");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_SWORD.get())
                 .pattern("#")
                 .pattern("#")
@@ -151,6 +159,32 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('#', ModItems.SANGUINITE_INGOT.get())
                 .define('S', ModItems.SILVER_INGOT)
                 .unlockedBy("has_sanguinite_ingot", has(ModItems.SANGUINITE_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_HELMET.get())
+                .pattern("###")
+                .pattern("# #")
+                .define('#', ModItems.SILVER_INGOT.get())
+                .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_CHESTPLATE.get())
+                .pattern("# #")
+                .pattern("###")
+                .pattern("###")
+                .define('#', ModItems.SILVER_INGOT.get())
+                .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_LEGGINGS.get())
+                .pattern("###")
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.SILVER_INGOT.get())
+                .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_BOOTS.get())
+                .pattern("# #")
+                .pattern("# #")
+                .define('#', ModItems.SILVER_INGOT.get())
+                .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
 
         // BLOCKS RECIPES GO HERE
 

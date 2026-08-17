@@ -36,6 +36,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SANGUINITE_BLOCK.get())
                 .add(ModBlocks.SILVER_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.END_SILVER_ORE.get())
                 .add(ModBlocks.RAW_SILVER_BLOCK.get())
                 .add(ModBlocks.SILVER_BLOCK.get());
 
@@ -56,6 +57,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.SANGUINITE_BLOCK.get())
                 .add(ModBlocks.SILVER_ORE.get())
                 .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
+                .add(ModBlocks.END_SILVER_ORE.get())
                 .add(ModBlocks.RAW_SILVER_BLOCK.get())
                 .add(ModBlocks.SILVER_BLOCK.get());
 
