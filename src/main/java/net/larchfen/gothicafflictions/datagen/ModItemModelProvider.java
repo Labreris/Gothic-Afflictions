@@ -68,6 +68,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ALCHEMICAL_FLAME.get());
         basicItem(ModItems.BURNING_ALKAHEST.get());
 
+        saplingItem(ModBlocks.ANCIENT_OAK_SAPLING);
+        saplingItem(ModBlocks.ANCIENT_DARK_OAK_SAPLING);
+
         // WALL BLOCKS
         wallItem(ModBlocks.POLISHED_HEMATITE_WALL, ModBlocks.POLISHED_HEMATITE);
         wallItem(ModBlocks.HEMATITE_BRICK_WALL, ModBlocks.HEMATITE_BRICKS);
@@ -88,6 +91,12 @@ public class ModItemModelProvider extends ItemModelProvider {
         trimmedArmorItem(ModItems.SILVER_LEGGINGS);
         trimmedArmorItem(ModItems.SILVER_BOOTS);
 
+    }
+
+    private ItemModelBuilder saplingItem(DeferredBlock<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                ResourceLocation.parse("item/generated")).texture("layer0",
+                ResourceLocation.fromNamespaceAndPath(GothicAfflictions.MOD_ID,"block/" + item.getId().getPath()));
     }
 
     // Shoutout to El_Redstoniano for making this

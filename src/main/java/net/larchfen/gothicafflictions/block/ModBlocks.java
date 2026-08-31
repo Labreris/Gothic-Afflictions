@@ -3,12 +3,18 @@ package net.larchfen.gothicafflictions.block;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.custom.ColumnBlock;
 import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
+import net.larchfen.gothicafflictions.block.custom.ModFlammableRotatedPillarBlock;
 import net.larchfen.gothicafflictions.item.ModItems;
+import net.larchfen.gothicafflictions.worldgen.tree.ModTreeGrowers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,6 +29,46 @@ public class ModBlocks {
     // ORDER OF THINGS TO DO PER NEW BLOCK:
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
+
+    public static final DeferredBlock<Block> HEARTWOOD_LOG = registerBlock("heartwood_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> HEARTWOOD_WOOD = registerBlock("heartwood_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_WOOD)
+            ));
+
+    public static final DeferredBlock<Block> HEARTWOOD_PLANKS = registerBlock("heartwood_planks",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_PLANKS)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            }
+            );
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_SAPLING = registerBlock("ancient_oak_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.ANCIENT_OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_SAPLING)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_DARK_OAK_SAPLING = registerBlock("ancient_dark_oak_sapling",
+            () -> new SaplingBlock(ModTreeGrowers.ANCIENT_DARK_OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_SAPLING)
+            ));
 
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
             () -> new Block(BlockBehaviour.Properties

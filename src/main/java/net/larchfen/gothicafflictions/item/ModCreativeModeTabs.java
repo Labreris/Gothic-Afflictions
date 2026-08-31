@@ -41,6 +41,8 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.ALCHEMICAL_FLAME);
                         output.accept(ModItems.BURNING_ALKAHEST);
 
+                        output.accept(ModItems.RITUAL_DAGGER);
+
                         output.accept(ModItems.SILVER_SWORD);
                         output.accept(ModItems.SILVER_PICKAXE);
                         output.accept(ModItems.SILVER_AXE);
@@ -69,6 +71,11 @@ public class ModCreativeModeTabs {
 
                         //CREATIVE MODE TAB BLOCKS GO HERE
 
+                        output.accept(ModBlocks.ANCIENT_OAK_SAPLING);
+                        output.accept(ModBlocks.ANCIENT_DARK_OAK_SAPLING);
+                        output.accept(ModBlocks.HEARTWOOD_LOG);
+                        output.accept(ModBlocks.HEARTWOOD_WOOD);
+                        output.accept(ModBlocks.HEARTWOOD_PLANKS);
                         output.accept(ModBlocks.HEMATITE_ORE);
                         output.accept(ModBlocks.DEEPSLATE_HEMATITE_ORE);
                         output.accept(ModBlocks.CHISELED_POLISHED_HEMATITE);

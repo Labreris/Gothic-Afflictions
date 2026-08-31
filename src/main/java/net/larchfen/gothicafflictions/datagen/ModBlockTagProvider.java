@@ -20,6 +20,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
+        tag(BlockTags.MINEABLE_WITH_AXE)
+                .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.HEARTWOOD_PLANKS.get());
+
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.CHISELED_POLISHED_HEMATITE.get())
                 .add(ModBlocks.HEMATITE_PILLAR.get())
@@ -71,5 +75,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.WALLS)
                 .add(ModBlocks.POLISHED_HEMATITE_WALL.get())
                 .add(ModBlocks.HEMATITE_BRICK_WALL.get());
+
+        tag(BlockTags.PLANKS)
+                .add(ModBlocks.HEARTWOOD_PLANKS.get());
+
+        tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.HEARTWOOD_LOG.get());
+
     }
 }

@@ -43,13 +43,18 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 block -> createSlabItemTable(ModBlocks.POLISHED_HEMATITE_SLAB.get()));
         add(ModBlocks.HEMATITE_BRICK_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.HEMATITE_BRICK_SLAB.get()));
-
         dropSelf(ModBlocks.TALCUM_BLOCK.get());
-
         dropSelf(ModBlocks.SANGUINITE_BLOCK.get());
-
         dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
         dropSelf(ModBlocks.SILVER_BLOCK.get());
+
+        dropSelf(ModBlocks.HEARTWOOD_PLANKS.get());
+        dropSelf(ModBlocks.HEARTWOOD_LOG.get());
+        dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
+
+        dropSelf(ModBlocks.ANCIENT_OAK_SAPLING.get());
+        dropSelf(ModBlocks.ANCIENT_DARK_OAK_SAPLING.get());
+
 
         // FOR ORES WITH A SIMPLE 1 ITEM DROP
         add(ModBlocks.HEMATITE_ORE.get(),
@@ -65,9 +70,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
         // FOR ORES THAT DROP MULTIPLES OF ONE ITEM
         add(ModBlocks.TALCUM_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.TALCUM_ORE.get(), ModItems.TALCUM.get(),1,3));
+                block -> createOreDrop(ModBlocks.TALCUM_ORE.get(), ModItems.TALCUM.get()));
         add(ModBlocks.CALCITE_TALCUM_ORE.get(),
-                block -> createMultipleOreDrops(ModBlocks.CALCITE_TALCUM_ORE.get(), ModItems.TALCUM.get(),1,3));
+                block -> createOreDrop(ModBlocks.CALCITE_TALCUM_ORE.get(), ModItems.TALCUM.get()));
 
         // FOR GARLIC CROPS
         LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition.hasBlockStateProperties(ModBlocks.GARLIC_CROP.get())

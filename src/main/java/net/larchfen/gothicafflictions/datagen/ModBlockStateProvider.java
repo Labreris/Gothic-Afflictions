@@ -3,9 +3,12 @@ package net.larchfen.gothicafflictions.datagen;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.ModBlocks;
 import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CropBlock;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ConfiguredModel;
@@ -28,18 +31,24 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.DEEPSLATE_HEMATITE_ORE);
         blockWithItem(ModBlocks.HEMATITE_BRICKS);
         blockWithItem(ModBlocks.POLISHED_HEMATITE);
-
         blockWithItem(ModBlocks.TALCUM_BLOCK);
         blockWithItem(ModBlocks.TALCUM_ORE);
         blockWithItem(ModBlocks.CALCITE_TALCUM_ORE);
-
         blockWithItem(ModBlocks.SANGUINITE_BLOCK);
-
         blockWithItem(ModBlocks.SILVER_ORE);
         blockWithItem(ModBlocks.DEEPSLATE_SILVER_ORE);
         blockWithItem(ModBlocks.END_SILVER_ORE);
         blockWithItem(ModBlocks.RAW_SILVER_BLOCK);
         blockWithItem(ModBlocks.SILVER_BLOCK);
+        blockWithItem(ModBlocks.HEARTWOOD_PLANKS);
+
+        logBlock((RotatedPillarBlock) ModBlocks.HEARTWOOD_LOG.get());
+        axisBlock(((RotatedPillarBlock) ModBlocks.HEARTWOOD_WOOD.get()), blockTexture(ModBlocks.HEARTWOOD_LOG.get()), blockTexture(ModBlocks.HEARTWOOD_LOG.get()));
+        blockItem(ModBlocks.HEARTWOOD_LOG);
+        blockItem(ModBlocks.HEARTWOOD_WOOD);
+
+        saplingBlock(ModBlocks.ANCIENT_OAK_SAPLING);
+        saplingBlock(ModBlocks.ANCIENT_DARK_OAK_SAPLING);
 
         stairsBlock(ModBlocks.POLISHED_HEMATITE_STAIRS.get(), blockTexture(ModBlocks.POLISHED_HEMATITE.get()));
         stairsBlock(ModBlocks.HEMATITE_BRICK_STAIRS.get(), blockTexture(ModBlocks.HEMATITE_BRICKS.get()));
@@ -57,6 +66,11 @@ public class ModBlockStateProvider extends BlockStateProvider {
         wallBlock(ModBlocks.HEMATITE_BRICK_WALL.get(), blockTexture(ModBlocks.HEMATITE_BRICKS.get()));
 
         makeCrop(((CropBlock) ModBlocks.GARLIC_CROP.get()), "garlic_crop_stage", "garlic_crop_stage");
+    }
+
+    private void saplingBlock(DeferredBlock<Block> blockRegistryObject) {
+        simpleBlock(blockRegistryObject.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(blockRegistryObject.get()).getPath(), blockTexture(blockRegistryObject.get())).renderType("cutout"));
     }
 
     public void makeCrop(CropBlock block, String modelName, String textureName) {

@@ -25,14 +25,12 @@
   "item.gothicafflictions.silver_chestplate": "Silver Chestplate",
   "item.gothicafflictions.silver_leggings": "Silver Leggings",
   "item.gothicafflictions.silver_boots": "Silver Boots",
-
   "item.gothicafflictions.sanguinite_sword": "Sanguinite Sword",
   "item.gothicafflictions.sanguinite_scepter": "Sanguinite Scepter",
+  "item.gothicafflictions.ritual_dagger": "Ritual Dagger",
 
   "block.gothicafflictions.chiseled_polished_hematite": "Chiseled Polished Hematite",
-
   "block.gothicafflictions.garlic_crop": "Garlic Crop",
-
   "block.gothicafflictions.hematite_bricks": "Hematite Bricks",
   "block.gothicafflictions.hematite_brick_stairs": "Hematite Brick Stairs",
   "block.gothicafflictions.hematite_brick_slab": "Hematite Brick Slab",
@@ -42,7 +40,6 @@
   "block.gothicafflictions.polished_hematite_stairs": "Polished Hematite Stairs",
   "block.gothicafflictions.polished_hematite_wall": "Polished Hematite Wall",
   "block.gothicafflictions.hematite_pillar": "Hematite Pillar",
-
   "block.gothicafflictions.hematite_ore": "Hematite Ore",
   "block.gothicafflictions.deepslate_hematite_ore": "Deepslate Hematite Ore",
   "block.gothicafflictions.talcum_block": "Block of Talcum",
@@ -54,10 +51,19 @@
   "block.gothicafflictions.raw_silver_block": "Block of Raw Silver",
   "block.gothicafflictions.silver_block": "Block of Silver",
   "block.gothicafflictions.sanguinite_block": "Block of Sanguinite",
+  "block.gothicafflictions.heartwood_planks": "Oak Heartwood Planks",
+  "block.gothicafflictions.heartwood_log": "Oak Heartwood Log",
+  "block.gothicafflictions.heartwood_wood": "Oak Heartwood Wood",
+  "block.gothicafflictions.ancient_oak_sapling": "Ancient Oak Sapling",
+  "block.gothicafflictions.ancient_dark_oak_sapling": "Ancient Dark Oak Sapling",
+
 
   "creativetab.gothicafflictions.gothic_affliction_items": "Gothic Afflictions Items",
   "creativetab.gothicafflictions.gothic_affliction_blocks": "Gothic Afflictions Blocks",
 
   "tooltip.gothic_afflictions.silver_held_item.tooltip": "§9+3 damage against Undead§r",
-  "tooltip.gothic_afflictions.silver_armor.tooltip": "§9Chance to rebuke Undead§r"
+  "tooltip.gothic_afflictions.silver_armor.tooltip": "§9Chance to rebuke Undead§r",
+  "tooltip.gothic_afflictions.ritual_dagger.tooltip": "§9Used to carve runes into things or beings§r",
+
+  "sounds.gothicafflictions.silver_armor_rebuke": "Silver armor rebukes"
 }

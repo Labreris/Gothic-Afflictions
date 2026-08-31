@@ -8,6 +8,7 @@ import net.larchfen.gothicafflictions.item.custom.ScepterItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.common.SimpleTier;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
@@ -16,7 +17,7 @@ import java.util.List;
 public class ModItems {
         public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(GothicAfflictions.MOD_ID);
 
-        // NEW ITEMS GO IN HERE. 1. ADD IT HERE 2. ADD TO CREATIVE TAB 3. ADD ASSETS 4. ADD DATA-GEN ENTRY 5. ADD TRANSLATION
+        // NEW ITEMS GO IN HERE. 1. ADD IT HERE 2. ADD TO CREATIVE TAB 3. ADD ASSETS 4. ADD DATA-GEN ENTRIES 5. ADD TRANSLATION
         // 6. ADD RECIPES (IF ANY)
 
         // TESTING ITEM REMOVE LATER
@@ -62,6 +63,17 @@ public class ModItems {
         public static final DeferredItem<Item> GARLIC = ITEMS.register("garlic",
                 () -> new Item(new Item.Properties().food(ModFoodProperties.GARLIC)));
 
+        public static final DeferredItem<SwordItem> RITUAL_DAGGER = ITEMS.register("ritual_dagger",
+                () -> new SwordItem(Tiers.STONE, new Item.Properties()
+                        .attributes(SwordItem.createAttributes(Tiers.STONE, 2, -2.4f)))
+                {
+                        @Override
+                        public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
+                                tooltipComponents.add(Component.translatable("tooltip.gothic_afflictions.ritual_dagger.tooltip"));
+                                super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
+                        }
+                });
+
         // SILVER TOOLS
         public static final DeferredItem<SwordItem> SILVER_SWORD = ITEMS.register("silver_sword",
                 () -> new SwordItem(ModToolTiers.SILVER, new Item.Properties()
@@ -98,7 +110,7 @@ public class ModItems {
 
         public static final DeferredItem<AxeItem> SILVER_AXE = ITEMS.register("silver_axe",
                 () -> new AxeItem(ModToolTiers.SILVER, new Item.Properties()
-                        .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6, -3.2f)))
+                        .attributes(AxeItem.createAttributes(ModToolTiers.SILVER, 6, -3.1f)))
                 {
                         @Override
                         public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {

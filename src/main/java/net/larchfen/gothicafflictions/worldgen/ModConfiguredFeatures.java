@@ -7,11 +7,18 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
+import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -25,6 +32,9 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_SILVER_ORE_KEY = registerKey("end_silver_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TALCUM_ORE_KEY = registerKey("talcum_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_CALCITE_TALCUM_ORE_KEY = registerKey("calcite_talcum_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ANCIENT_OAK_KEY = registerKey("ancient_oak");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> ANCIENT_DARK_OAK_KEY = registerKey("ancient_dark_oak");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
@@ -54,13 +64,32 @@ public class ModConfiguredFeatures {
         // All the ores get configured (Note: Talcum is split into two)
         register(context, OVERWORLD_HEMATITE_ORE_KEY, Feature.ORE, new OreConfiguration(overworldHematiteOres, 6));
 
-        register(context, OVERWORLD_TALCUM_ORE_KEY, Feature.ORE, new OreConfiguration(overworldTalcumOres, 5));
+        register(context, OVERWORLD_TALCUM_ORE_KEY, Feature.ORE, new OreConfiguration(overworldTalcumOres, 6));
         register(context, OVERWORLD_CALCITE_TALCUM_ORE_KEY, Feature.ORE, new OreConfiguration(calciteReplaceables,
-                ModBlocks.CALCITE_TALCUM_ORE.get().defaultBlockState(), 8));
+                ModBlocks.CALCITE_TALCUM_ORE.get().defaultBlockState(), 4));
 
         register(context, OVERWORLD_SILVER_ORE_KEY, Feature.ORE, new OreConfiguration(overworldSilverOres, 7));
         register(context, END_SILVER_ORE_KEY, Feature.ORE, new OreConfiguration(end_stoneReplaceables,
-                ModBlocks.END_SILVER_ORE.get().defaultBlockState(), 6));
+                ModBlocks.END_SILVER_ORE.get().defaultBlockState(), 13));
+
+        // TREES
+        register(context, ANCIENT_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(Blocks.OAK_LOG),
+                new GiantTrunkPlacer(6, 6, 8),
+
+                BlockStateProvider.simple(Blocks.OAK_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+        register(context, ANCIENT_DARK_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.HEARTWOOD_LOG.get()),
+                new ForkingTrunkPlacer(4, 4, 3),
+
+                BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES),
+                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
+
+                new TwoLayersFeatureSize(1, 0, 2)).build());
 
     }
 

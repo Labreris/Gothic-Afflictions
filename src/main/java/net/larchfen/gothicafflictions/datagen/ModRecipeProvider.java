@@ -160,6 +160,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SILVER_INGOT)
                 .unlockedBy("has_sanguinite_ingot", has(ModItems.SANGUINITE_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.RITUAL_DAGGER.get())
+                .pattern("#")
+                .pattern("S")
+                .define('#', ModItems.HEMATITE.get())
+                .define('S', Items.STICK)
+                .unlockedBy("has_hematite", has(ModItems.HEMATITE)).save(recipeOutput);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.SILVER_HELMET.get())
                 .pattern("###")
                 .pattern("# #")
@@ -237,6 +244,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .pattern("P")
                 .define('P', ModBlocks.POLISHED_HEMATITE.get())
                 .unlockedBy("has_polished_hematite", has(ModBlocks.POLISHED_HEMATITE)).save(recipeOutput);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HEARTWOOD_PLANKS.get())
+                .requires(ModBlocks.HEARTWOOD_LOG, 4)
+                .unlockedBy("has_heartwood_log", has(ModBlocks.HEARTWOOD_LOG)).save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.SANGUINITE_BLOCK.get())
                 .requires(ModItems.SANGUINITE_INGOT, 9)

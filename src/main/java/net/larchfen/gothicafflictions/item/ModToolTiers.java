@@ -10,5 +10,5 @@ public class ModToolTiers {
             190, 6, 2, 19, () -> Ingredient.of(ModItems.SILVER_INGOT));
 
     public static final Tier SANGUINITE = new SimpleTier(ModTags.Blocks.INCORRECT_FOR_SANGUINITE_TOOL,
-            3666, 7, 5.0F, 14, () -> Ingredient.of(ModItems.SANGUINITE_INGOT));
+            2666, 7, 5.0F, 14, () -> Ingredient.of(ModItems.SANGUINITE_INGOT));
 }

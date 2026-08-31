@@ -3,6 +3,7 @@ package net.larchfen.gothicafflictions.event;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.larchfen.gothicafflictions.item.custom.HammerItem;
+import net.larchfen.gothicafflictions.sound.ModSounds;
 import net.larchfen.gothicafflictions.util.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.HolderGetter;
@@ -68,22 +69,26 @@ public class ModEvents {
                 event.setNewDamage(event.getOriginalDamage() + 3);
             }
         }
+        if (event.getSource().getDirectEntity() instanceof Player player && player.getMainHandItem().is(ModItems.RITUAL_DAGGER)) {
+            event.getEntity().addEffect(new MobEffectInstance(MobEffects.WITHER, 40, 4));
+        }
     }
 
     @SubscribeEvent
     public static void livingDamage( LivingDamageEvent.Post event) {
-        LivingEntity enemyMob = (LivingEntity) event.getSource().getEntity();
-        if (enemyMob != null) {
-            if (enemyMob.getType().is(EntityTypeTags.UNDEAD) && event.getEntity() instanceof Player player) {
-                float chanceToWeakness = 0f;
-                for (ItemStack armorItem : player.getArmorSlots()) {
-                    if (armorItem.is(ModTags.Items.SILVER_ARMOR)) {
-                        chanceToWeakness += 0.18f;
+        if (event.getSource().getDirectEntity() instanceof LivingEntity enemyMob) {
+            if (enemyMob != null) {
+                if (enemyMob.getType().is(EntityTypeTags.UNDEAD) && event.getEntity() instanceof Player player) {
+                    float chanceToWeakness = 0f;
+                    for (ItemStack armorItem : player.getArmorSlots()) {
+                        if (armorItem.is(ModTags.Items.SILVER_ARMOR)) {
+                            chanceToWeakness += 0.2f;
+                        }
                     }
-                }
-                if (chanceToWeakness >= player.getRandom().nextFloat()) {
-                    enemyMob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 0));
-                    enemyMob.playSound(SoundEvents.TRIDENT_RETURN,0.8f, 1.5f);
+                    if (chanceToWeakness >= player.getRandom().nextFloat()) {
+                        enemyMob.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 80, 0));
+                        enemyMob.playSound(ModSounds.SILVER_ARMOR_REBUKE.get(), 0.7f, 3.5f);
+                    }
                 }
             }
         }

@@ -64,7 +64,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(
                         ModItems.SILVER_SWORD.get(),
                         ModItems.SANGUINITE_SWORD.get(),
-                        ModItems.SANGUINITE_SCEPTER.get());
+                        ModItems.SANGUINITE_SCEPTER.get(),
+                        ModItems.RITUAL_DAGGER.get());
         tag(ItemTags.PICKAXES)
                 .add(
                         ModItems.SILVER_PICKAXE.get());
@@ -83,5 +84,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SILVER_CHESTPLATE.get())
                 .add(ModItems.SILVER_LEGGINGS.get())
                 .add(ModItems.SILVER_BOOTS.get());
+
+        this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.HEARTWOOD_LOG.get().asItem());
     }
 }

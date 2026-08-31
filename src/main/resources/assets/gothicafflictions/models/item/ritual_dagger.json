@@ -1,0 +1,33 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "gothicafflictions:item/ritual_dagger"
+	},
+	"display": {
+		"thirdperson_righthand": {
+			"rotation": [0, -90, -135],
+			"translation": [0, -7.75, 1.25],
+			"scale": [0.85, 0.85, 0.85]
+		},
+		"thirdperson_lefthand": {
+			"rotation": [0, 90, 135],
+			"translation": [0, -7.75, 1.25],
+			"scale": [0.85, 0.85, 0.85]
+		},
+		"firstperson_righthand": {
+			"rotation": [-70, 90, 0],
+			"translation": [1.13, 5, 1.13],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"firstperson_lefthand": {
+			"rotation": [-70, -90, 0],
+			"translation": [1.13, 5, 1.13],
+			"scale": [0.68, 0.68, 0.68]
+		},
+		"head": {
+			"rotation": [45, -90, -135],
+			"translation": [0, 7, 7],
+			"scale": [1.3, 1.3, 1.3]
+		}
+	}
+}

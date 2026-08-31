@@ -32,22 +32,22 @@ public class ModPlacedFeatures {
                                 VerticalAnchor.absolute(320)))
         );
         register(context, TALCUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_TALCUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(6,
-                        HeightRangePlacement.uniform(VerticalAnchor.absolute(0),
-                                VerticalAnchor.absolute(256)))
-        );
-        register(context, CALCITE_TALCUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_CALCITE_TALCUM_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(256,
+                ModOrePlacement.commonOrePlacement(10,
                         HeightRangePlacement.triangle(VerticalAnchor.absolute(0),
                                 VerticalAnchor.absolute(320)))
         );
+        register(context, CALCITE_TALCUM_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_CALCITE_TALCUM_ORE_KEY),
+                ModOrePlacement.commonOrePlacement(128,
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(32),
+                                VerticalAnchor.absolute(256)))
+        );
         register(context, SILVER_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OVERWORLD_SILVER_ORE_KEY),
                 ModOrePlacement.commonOrePlacement(16,
-                        HeightRangePlacement.triangle(VerticalAnchor.aboveBottom(-160),
+                        HeightRangePlacement.triangle(VerticalAnchor.absolute(-160),
                                 VerticalAnchor.aboveBottom(160)))
         );
         register(context, END_SILVER_ORE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.END_SILVER_ORE_KEY),
-                ModOrePlacement.commonOrePlacement(8,
+                ModOrePlacement.commonOrePlacement(3,
                         HeightRangePlacement.uniform(VerticalAnchor.absolute(-64),
                                 VerticalAnchor.absolute(120)))
         );

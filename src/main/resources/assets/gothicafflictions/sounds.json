@@ -1,0 +1,10 @@
+{
+  "silver_armor_rebuke": {
+    "subtitle": "sounds.gothicafflictions.silver_armor_rebuke",
+    "sounds": [
+      "gothicafflictions:silver_armor_rebuke1",
+      "gothicafflictions:silver_armor_rebuke2",
+      "gothicafflictions:silver_armor_rebuke3"
+    ]
+  }
+}
