@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gothicafflictions:block/mega_tree/ancient_oak_log_7_top",
+    "east": "gothicafflictions:block/mega_tree/ancient_oak_log_4_top",
+    "north": "minecraft:block/oak_log",
+    "particle": "minecraft:block/oak_log",
+    "south": "gothicafflictions:block/mega_tree/ancient_oak_log_8_top",
+    "up": "gothicafflictions:block/mega_tree/ancient_oak_log_1_top",
+    "west": "minecraft:block/oak_log"
+  }
+}

@@ -22,7 +22,15 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
-                .add(ModBlocks.HEARTWOOD_PLANKS.get());
+                .add(ModBlocks.HEARTWOOD_PLANKS.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_1.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_4.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_5.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_6.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_7.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_8.get());
 
         tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(ModBlocks.CHISELED_POLISHED_HEMATITE.get())
@@ -80,7 +88,16 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.HEARTWOOD_PLANKS.get());
 
         tag(BlockTags.LOGS_THAT_BURN)
-                .add(ModBlocks.HEARTWOOD_LOG.get());
+                .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_1.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_4.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_5.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_6.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_7.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG_8.get());
+
 
     }
 }

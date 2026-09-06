@@ -2,6 +2,7 @@ package net.larchfen.gothicafflictions.worldgen;
 
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.ModBlocks;
+import net.larchfen.gothicafflictions.worldgen.tree.ModTrunkPlacer;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -32,9 +33,6 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_SILVER_ORE_KEY = registerKey("end_silver_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TALCUM_ORE_KEY = registerKey("talcum_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_CALCITE_TALCUM_ORE_KEY = registerKey("calcite_talcum_ore");
-
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ANCIENT_OAK_KEY = registerKey("ancient_oak");
-    public static final ResourceKey<ConfiguredFeature<?, ?>> ANCIENT_DARK_OAK_KEY = registerKey("ancient_dark_oak");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
@@ -73,23 +71,6 @@ public class ModConfiguredFeatures {
                 ModBlocks.END_SILVER_ORE.get().defaultBlockState(), 13));
 
         // TREES
-        register(context, ANCIENT_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(Blocks.OAK_LOG),
-                new GiantTrunkPlacer(6, 6, 8),
-
-                BlockStateProvider.simple(Blocks.OAK_LEAVES),
-                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
-
-                new TwoLayersFeatureSize(1, 0, 2)).build());
-
-        register(context, ANCIENT_DARK_OAK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                BlockStateProvider.simple(ModBlocks.HEARTWOOD_LOG.get()),
-                new ForkingTrunkPlacer(4, 4, 3),
-
-                BlockStateProvider.simple(Blocks.DARK_OAK_LEAVES),
-                new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(3), 3),
-
-                new TwoLayersFeatureSize(1, 0, 2)).build());
 
     }
 

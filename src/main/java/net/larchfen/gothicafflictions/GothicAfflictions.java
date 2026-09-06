@@ -5,6 +5,7 @@ import net.larchfen.gothicafflictions.component.ModDataComponents;
 import net.larchfen.gothicafflictions.item.ModCreativeModeTabs;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.larchfen.gothicafflictions.sound.ModSounds;
+import net.larchfen.gothicafflictions.worldgen.tree.ModTrunkPlacers;
 import net.minecraft.world.item.CreativeModeTabs;
 import org.slf4j.Logger;
 
@@ -50,6 +51,8 @@ public class GothicAfflictions {
 
         ModDataComponents.register(modEventBus);
         ModSounds.register(modEventBus);
+
+        ModTrunkPlacers.TRUNK_PLACERS.register(modEventBus);
 
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);

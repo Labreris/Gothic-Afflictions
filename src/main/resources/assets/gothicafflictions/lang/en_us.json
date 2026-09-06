@@ -54,8 +54,14 @@
   "block.gothicafflictions.heartwood_planks": "Oak Heartwood Planks",
   "block.gothicafflictions.heartwood_log": "Oak Heartwood Log",
   "block.gothicafflictions.heartwood_wood": "Oak Heartwood Wood",
-  "block.gothicafflictions.ancient_oak_sapling": "Ancient Oak Sapling",
-  "block.gothicafflictions.ancient_dark_oak_sapling": "Ancient Dark Oak Sapling",
+  "block.gothicafflictions.ancient_oak_log_1": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_2": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_3": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_4": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_5": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_6": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_7": "Oak Log",
+  "block.gothicafflictions.ancient_oak_log_8": "Oak Log",
 
 
   "creativetab.gothicafflictions.gothic_affliction_items": "Gothic Afflictions Items",

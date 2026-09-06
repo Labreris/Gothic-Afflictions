@@ -68,9 +68,6 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ALCHEMICAL_FLAME.get());
         basicItem(ModItems.BURNING_ALKAHEST.get());
 
-        saplingItem(ModBlocks.ANCIENT_OAK_SAPLING);
-        saplingItem(ModBlocks.ANCIENT_DARK_OAK_SAPLING);
-
         // WALL BLOCKS
         wallItem(ModBlocks.POLISHED_HEMATITE_WALL, ModBlocks.POLISHED_HEMATITE);
         wallItem(ModBlocks.HEMATITE_BRICK_WALL, ModBlocks.HEMATITE_BRICKS);

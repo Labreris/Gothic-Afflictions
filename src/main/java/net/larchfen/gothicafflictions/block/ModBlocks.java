@@ -4,6 +4,7 @@ import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.custom.ColumnBlock;
 import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
 import net.larchfen.gothicafflictions.block.custom.ModFlammableRotatedPillarBlock;
+import net.larchfen.gothicafflictions.block.custom.WideColumnBlock;
 import net.larchfen.gothicafflictions.item.ModItems;
 import net.larchfen.gothicafflictions.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
@@ -29,6 +30,46 @@ public class ModBlocks {
     // ORDER OF THINGS TO DO PER NEW BLOCK:
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_1 = registerBlock("ancient_oak_log_1",
+            () -> new WideColumnBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_2 = registerBlock("ancient_oak_log_2",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_3 = registerBlock("ancient_oak_log_3",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_4 = registerBlock("ancient_oak_log_4",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_5 = registerBlock("ancient_oak_log_5",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_6 = registerBlock("ancient_oak_log_6",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_7 = registerBlock("ancient_oak_log_7",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_8 = registerBlock("ancient_oak_log_8",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_LOG)
+            ));
 
     public static final DeferredBlock<Block> HEARTWOOD_LOG = registerBlock("heartwood_log",
             () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
@@ -59,16 +100,6 @@ public class ModBlocks {
                 }
             }
             );
-
-    public static final DeferredBlock<Block> ANCIENT_OAK_SAPLING = registerBlock("ancient_oak_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.ANCIENT_OAK, BlockBehaviour.Properties
-                    .ofFullCopy(Blocks.OAK_SAPLING)
-            ));
-
-    public static final DeferredBlock<Block> ANCIENT_DARK_OAK_SAPLING = registerBlock("ancient_dark_oak_sapling",
-            () -> new SaplingBlock(ModTreeGrowers.ANCIENT_DARK_OAK, BlockBehaviour.Properties
-                    .ofFullCopy(Blocks.OAK_SAPLING)
-            ));
 
     public static final DeferredBlock<Block> RAW_SILVER_BLOCK = registerBlock("raw_silver_block",
             () -> new Block(BlockBehaviour.Properties

@@ -47,9 +47,6 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockItem(ModBlocks.HEARTWOOD_LOG);
         blockItem(ModBlocks.HEARTWOOD_WOOD);
 
-        saplingBlock(ModBlocks.ANCIENT_OAK_SAPLING);
-        saplingBlock(ModBlocks.ANCIENT_DARK_OAK_SAPLING);
-
         stairsBlock(ModBlocks.POLISHED_HEMATITE_STAIRS.get(), blockTexture(ModBlocks.POLISHED_HEMATITE.get()));
         stairsBlock(ModBlocks.HEMATITE_BRICK_STAIRS.get(), blockTexture(ModBlocks.HEMATITE_BRICKS.get()));
         // MAKES IT SO THE ITEM MODEL ALSO WORKS

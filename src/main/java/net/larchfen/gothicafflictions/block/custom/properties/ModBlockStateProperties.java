@@ -7,4 +7,5 @@ public class ModBlockStateProperties {
     public static final BooleanProperty TOP = BooleanProperty.create("top");
     public static final EnumProperty<ColumnType> COLUMN_TYPE = EnumProperty.create("type", ColumnType.class);
     public static final EnumProperty<HorizontalConnectionType> HORIZONTAL_CONNECTION_TYPE = EnumProperty.create("horizontal", HorizontalConnectionType.class);
+    public static final EnumProperty<LargeDiscType> LARGE_DISC_TYPE = EnumProperty.create("type", LargeDiscType.class);
 }

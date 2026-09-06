@@ -1,0 +1,71 @@
+package net.larchfen.gothicafflictions.block.custom;
+
+import net.larchfen.gothicafflictions.block.custom.properties.LargeDiscType;
+import net.larchfen.gothicafflictions.block.custom.properties.ModBlockStateProperties;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import org.jetbrains.annotations.Nullable;
+
+public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
+    public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
+    public static final EnumProperty<LargeDiscType> TYPE = ModBlockStateProperties.LARGE_DISC_TYPE;
+
+    public WideColumnBlock(Properties properties) {
+        super(properties);
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(TYPE, LargeDiscType.NONE));
+    }
+
+    @Nullable
+    @Override
+    public BlockState getStateForPlacement(BlockPlaceContext context) {
+        Level level = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        Direction.Axis axis = context.getClickedFace().getAxis();
+
+        BlockState state = this.defaultBlockState().setValue(AXIS, axis);
+        state = state.setValue(TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis)));
+        return state;
+    }
+
+    @Override
+    public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
+        if (level.isClientSide) return;
+
+        Direction.Axis axis = state.getValue(AXIS);
+        LargeDiscType type = getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis));
+        if (state.getValue(TYPE) == type) return;
+
+        state = state.setValue(TYPE, type);
+        level.setBlock(pos, state, 3);
+    }
+
+    public BlockState getRelativeTop(Level level, BlockPos pos, Direction.Axis axis) {
+        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE)));
+    }
+
+    public BlockState getRelativeBottom(Level level, BlockPos pos, Direction.Axis axis) {
+        return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
+    }
+
+    public LargeDiscType getType(BlockState state, BlockState south, BlockState north) {
+        boolean south_of_heartwood_log = south.is(state.getBlock()) && state.getValue(AXIS) == south.getValue(AXIS);
+        boolean north_of_heartwood_log = north.is(state.getBlock()) && state.getValue(AXIS) == north.getValue(AXIS);
+
+        if (south_of_heartwood_log) return LargeDiscType.SOUTH_SIDE;
+        return LargeDiscType.NONE;
+    }
+
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
+        builder.add(TYPE, AXIS);
+    }
+}
+

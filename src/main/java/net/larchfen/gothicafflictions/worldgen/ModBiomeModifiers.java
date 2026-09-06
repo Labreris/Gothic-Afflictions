@@ -55,6 +55,7 @@ public class ModBiomeModifiers {
                 biomes.getOrThrow(BiomeTags.IS_OVERWORLD),
                 HolderSet.direct(placedFeatures.getOrThrow(ModPlacedFeatures.CALCITE_TALCUM_ORE_PLACED_KEY)),
                 GenerationStep.Decoration.UNDERGROUND_ORES));
+
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

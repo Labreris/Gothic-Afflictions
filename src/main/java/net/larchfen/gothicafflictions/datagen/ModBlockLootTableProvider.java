@@ -13,6 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
@@ -52,9 +53,14 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HEARTWOOD_LOG.get());
         dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
 
-        dropSelf(ModBlocks.ANCIENT_OAK_SAPLING.get());
-        dropSelf(ModBlocks.ANCIENT_DARK_OAK_SAPLING.get());
-
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_1.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_2.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_3.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_4.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_5.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_6.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_7.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG_8.get(), Blocks.OAK_LOG.asItem());
 
         // FOR ORES WITH A SIMPLE 1 ITEM DROP
         add(ModBlocks.HEMATITE_ORE.get(),

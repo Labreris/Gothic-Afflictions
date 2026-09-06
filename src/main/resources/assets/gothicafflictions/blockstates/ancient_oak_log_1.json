@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "type=none,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1","x": 90,"y": 90},
+    "type=none,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1"},
+    "type=none,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1","x": 90},
+    "type=south_side,axis=x": {"model": "gothicafflictions:block/column/hematite_pillar_top","x": 90,"y": 90},
+    "type=south_side,axis=y": {"model": "gothicafflictions:block/column/hematite_pillar_top"},
+    "type=south_side,axis=z": {"model": "gothicafflictions:block/column/hematite_pillar_top","x": 270}
+  }
+}
