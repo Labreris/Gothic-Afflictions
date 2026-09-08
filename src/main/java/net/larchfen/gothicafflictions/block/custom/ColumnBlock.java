@@ -1,6 +1,7 @@
 package net.larchfen.gothicafflictions.block.custom;
 
 import net.larchfen.gothicafflictions.block.custom.properties.ColumnType;
+import net.larchfen.gothicafflictions.block.custom.properties.LargeDiscType;
 import net.larchfen.gothicafflictions.block.custom.properties.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -32,7 +33,10 @@ public class ColumnBlock extends RotatedPillarBlock {
         Direction.Axis axis = context.getClickedFace().getAxis();
 
         BlockState state = this.defaultBlockState().setValue(AXIS, axis);
-        state = state.setValue(TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis)));
+        state = state.setValue(
+                TYPE,
+                getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis))
+        );
         return state;
     }
 
@@ -52,9 +56,14 @@ public class ColumnBlock extends RotatedPillarBlock {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.POSITIVE)));
     }
 
+
+    // pos: this block's position
+    //
     public BlockState getRelativeBottom(Level level, BlockPos pos, Direction.Axis axis) {
         return level.getBlockState(pos.relative(Direction.fromAxisAndDirection(axis, Direction.AxisDirection.NEGATIVE)));
     }
+
+
 
     public ColumnType getType(BlockState state, BlockState above, BlockState below) {
         boolean shape_above_same = above.is(state.getBlock()) && state.getValue(AXIS) == above.getValue(AXIS);
