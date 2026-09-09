@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
@@ -52,94 +51,74 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
         level.setBlock(pos, state, 3);
     }
 */
-    public BlockState[] getSurroundingNeighborsY(Level level, BlockPos pos) {
-        BlockState[] allNeighborBlocksY = new BlockState[8];
+    public BlockState[] getSurroundingNeighbors(Level level, BlockPos pos) {
+        BlockState[] allNeighborBlocksY = new BlockState[26];
 
         int i = 0;
-        int y = 0;
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
-                    if (x == 0 && z == 0) continue;
+                for (int y = -1; y <= 1; y++) {
+                    if (x == 0 && z == 0 && y == 0) continue;
                     allNeighborBlocksY[i] = level.getBlockState(pos.offset(x, y, z));
                     i++;
+                }
+
             }
         }
 
         return allNeighborBlocksY;
     }
-    /*
-        public BlockState[] getSurroundingNeighborsX(Level level, BlockPos pos) {
-            BlockState[] allNeighborBlocksX = new BlockState[8];
 
-            int x = 0;
-            int i = 0;
-            for (int y = -1; y <= 1; y++) {
-                for (int z = -1; z <= 1; z++) {
-                    if (y == 0 && z == 0) continue;
-                    allNeighborBlocksX[i] = level.getBlockState(pos.offset(x, y, z));
-                    i++;
-                }
-            }
-
-            return allNeighborBlocksX;
-        }
-
-        public BlockState[] getSurroundingNeighborsZ(Level level, BlockPos pos) {
-            BlockState[] allNeighborBlocksZ = new BlockState[8];
-
-            int z = 0;
-            int i = 0;
-            for (int y = -1; y <= 1; y++) {
-                for (int x = -1; x <= 1; x++) {
-                    if (y == 0 && x == 0) continue;
-                    allNeighborBlocksZ[i] = level.getBlockState(pos.offset(x, y, z));
-                    i++;
-                }
-            }
-
-            return allNeighborBlocksZ;
-        }
-
-        public BlockState[] getCardinalNeighbors(BlockState state, Level level, BlockPos pos, Direction direction) {
-            BlockState[] cardinalNeighborBlocks = new BlockState[8];
-
-            int y = 0;
-            int i = 0;
-            for (int x = -1; x <= 1; x++) {
-                for (int z = -1; z <= 1; z++) {
-                    if (x == 0 && z == 0) continue;
-                    cardinalNeighborBlocks[i] = level.getBlockState(pos.offset(1, direction));
-                    i++;
-                }
-            }
-
-            return cardinalNeighborBlocks;
-        }
-
-
-        public LargeDiscType getTypeWithAxis(Level level, BlockPos pos, Block center) {
-
-        }
-    */
     public LargeDiscType getType(Level level, BlockPos pos, Block centerBlock, BlockPlaceContext context) {
-        BlockState[] neighborsY = getSurroundingNeighborsY(level, pos);
+        BlockState[] neighbors = getSurroundingNeighbors(level, pos);
 
-        LargeDiscType[] relativePositions = {
-                LargeDiscType.NE_CORNER,
-                LargeDiscType.EAST_SIDE,
-                LargeDiscType.SE_CORNER,
-                LargeDiscType.NORTH_SIDE,
-                LargeDiscType.SOUTH_SIDE,
-                LargeDiscType.NW_CORNER,
-                LargeDiscType.WEST_SIDE,
-                LargeDiscType.SW_CORNER
+        LargeDiscType[] relativePositionsY = {
+                LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.EAST_SIDE, LargeDiscType.EAST_SIDE, LargeDiscType.EAST_SIDE,
+                LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,LargeDiscType.NORTH_SIDE,LargeDiscType.NORTH_SIDE,
+                LargeDiscType.NONE,                               LargeDiscType.NONE,
+                LargeDiscType.SOUTH_SIDE,LargeDiscType.SOUTH_SIDE,LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.WEST_SIDE, LargeDiscType.WEST_SIDE, LargeDiscType.WEST_SIDE,
+                LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER
+        };
+
+        LargeDiscType[] relativePositionsX = {
+                LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,LargeDiscType.NONE,      LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
+                LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,                         LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
+                LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,LargeDiscType.NONE,      LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
+        };
+
+        LargeDiscType[] relativePositionsZ = {
+                LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
+                LargeDiscType.SOUTH_SIDE,LargeDiscType.NONE,      LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SOUTH_SIDE,                         LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SOUTH_SIDE,LargeDiscType.NONE,      LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
+                LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
+                LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER
         };
 
 
-        for (int i = 0; i < neighborsY.length; i++) {
+        for (int i = 0; i < neighbors.length; i++) {
 
-            if (neighborsY[i].getBlock() == centerBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
-                return relativePositions[i];
+            if (neighbors[i].getBlock() == centerBlock && neighbors[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighbors[i].getValue(AXIS) == Direction.Axis.Y) {
+                    return relativePositionsY[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.X) {
+                    return relativePositionsX[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.Z) {
+                    return relativePositionsZ[i];
+                }
             }
 
         }
