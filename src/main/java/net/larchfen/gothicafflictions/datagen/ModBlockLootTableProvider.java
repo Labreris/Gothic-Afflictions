@@ -53,7 +53,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HEARTWOOD_LOG.get());
         dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
 
-        dropOther(ModBlocks.ANCIENT_OAK_LOG_1.get(), Blocks.OAK_LOG.asItem());
+        dropOther(ModBlocks.ANCIENT_OAK_LOG.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_2.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_3.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_4.get(), Blocks.OAK_LOG.asItem());
@@ -61,6 +61,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropOther(ModBlocks.ANCIENT_OAK_LOG_6.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_7.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_8.get(), Blocks.OAK_LOG.asItem());
+
 
         // FOR ORES WITH A SIMPLE 1 ITEM DROP
         add(ModBlocks.HEMATITE_ORE.get(),

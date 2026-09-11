@@ -1,10 +1,13 @@
 package net.larchfen.gothicafflictions.block.custom;
 
+import com.llamalad7.mixinextras.lib.apache.commons.ArrayUtils;
 import net.larchfen.gothicafflictions.block.ModBlocks;
+import net.larchfen.gothicafflictions.block.custom.properties.CornerOrNotType;
 import net.larchfen.gothicafflictions.block.custom.properties.LargeDiscType;
 import net.larchfen.gothicafflictions.block.custom.properties.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Vec3i;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -13,6 +16,8 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import org.jetbrains.annotations.Nullable;
+
+import static java.lang.Math.abs;
 
 public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
     public static final EnumProperty<Direction.Axis> AXIS = BlockStateProperties.AXIS;
@@ -34,7 +39,7 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
 
         state = state.setValue(
                 TYPE,
-                getType(level, pos, ModBlocks.HEARTWOOD_LOG.get(), context));
+                getType(level, pos, ModBlocks.HEARTWOOD_LOG.get(), ModBlocks.ANCIENT_OAK_LOG.get(), context));
         return state;
     }
 /*
@@ -51,33 +56,152 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
         level.setBlock(pos, state, 3);
     }
 */
-    public BlockState[] getSurroundingNeighbors(Level level, BlockPos pos) {
-        BlockState[] allNeighborBlocksY = new BlockState[26];
+    public BlockState[] getSurroundingNeighbors(Level level, BlockPos pos, int axis) {
+        BlockState[] allNeighborBlocks = new BlockState[26];
+        BlockState[] allNeighborBlocksY = new BlockState[8];
+        BlockState[] allNeighborBlocksX = new BlockState[8];
+        BlockState[] allNeighborBlocksZ = new BlockState[8];
 
         int i = 0;
+        int l = 0;
+        int t = 0;
+        int j = 0;
         for (int x = -1; x <= 1; x++) {
             for (int z = -1; z <= 1; z++) {
                 for (int y = -1; y <= 1; y++) {
                     if (x == 0 && z == 0 && y == 0) continue;
-                    allNeighborBlocksY[i] = level.getBlockState(pos.offset(x, y, z));
+                    if(y == 0) {
+                        allNeighborBlocksY[l] = level.getBlockState(pos.offset(x, y, z));
+                        l++;
+                    }
+                    if (x == 0) {
+                        allNeighborBlocksX[t] = level.getBlockState(pos.offset(x, y, z));
+                        t++;
+                    }
+                    if (z == 0) {
+                        allNeighborBlocksZ[j] = level.getBlockState(pos.offset(x, y, z));
+                        j++;
+                    }
+                    allNeighborBlocks[i] = level.getBlockState(pos.offset(x, y, z));
                     i++;
                 }
 
             }
         }
-
-        return allNeighborBlocksY;
+        if(axis == 1) {
+            // Y axis
+            return allNeighborBlocksY;
+        } else if(axis == 2) {
+            // X axis
+            return allNeighborBlocksX;
+        } else if(axis == 3) {
+            // Z axis
+            return allNeighborBlocksZ;
+        } else return allNeighborBlocks;
     }
 
-    public LargeDiscType getType(Level level, BlockPos pos, Block centerBlock, BlockPlaceContext context) {
-        BlockState[] neighbors = getSurroundingNeighbors(level, pos);
+    public LargeDiscType getType(Level level, BlockPos pos, Block centerBlock, Block sideBlock, BlockPlaceContext context) {
+        BlockState[] neighborsY = getSurroundingNeighbors(level, pos, 1);
+        BlockState[] neighborsX = getSurroundingNeighbors(level, pos, 2);
+        BlockState[] neighborsZ = getSurroundingNeighbors(level, pos, 3);
 
+        LargeDiscType[] relativePositionsY = {
+                LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,                         LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
+        };
+
+        LargeDiscType[] relativePositionsX = {
+                LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
+                LargeDiscType.NORTH_SIDE,                         LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
+        };
+
+        LargeDiscType[] relativePositionsZ = {
+                LargeDiscType.SE_CORNER,    LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
+                LargeDiscType.SOUTH_SIDE,                            LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SW_CORNER,    LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
+        };
+
+        LargeDiscType[] cornerPositionsY_SW = {
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsY_SE = {
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsY_NW = {
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsY_NE = {
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+        };
+
+        LargeDiscType[] cornerPositionsX_SW = {
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsX_SE = {
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsX_NW = {
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsX_NE = {
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+        };
+
+        LargeDiscType[] cornerPositionsZ_SW = {
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsZ_SE = {
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsZ_NW = {
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+        };
+
+        LargeDiscType[] cornerPositionsZ_NE = {
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+        };
+
+        /*
         LargeDiscType[] relativePositionsY = {
                 LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
                 LargeDiscType.EAST_SIDE, LargeDiscType.EAST_SIDE, LargeDiscType.EAST_SIDE,
                 LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER,
                 LargeDiscType.NORTH_SIDE,LargeDiscType.NORTH_SIDE,LargeDiscType.NORTH_SIDE,
-                LargeDiscType.NONE,                               LargeDiscType.NONE,
+                LargeDiscType.MIDDLE,                             LargeDiscType.MIDDLE,
                 LargeDiscType.SOUTH_SIDE,LargeDiscType.SOUTH_SIDE,LargeDiscType.SOUTH_SIDE,
                 LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER,
                 LargeDiscType.WEST_SIDE, LargeDiscType.WEST_SIDE, LargeDiscType.WEST_SIDE,
@@ -86,13 +210,13 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
 
         LargeDiscType[] relativePositionsX = {
                 LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
-                LargeDiscType.NORTH_SIDE,LargeDiscType.NONE,      LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NORTH_SIDE,LargeDiscType.MIDDLE,    LargeDiscType.SOUTH_SIDE,
                 LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
                 LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
                 LargeDiscType.NORTH_SIDE,                         LargeDiscType.SOUTH_SIDE,
                 LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
                 LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
-                LargeDiscType.NORTH_SIDE,LargeDiscType.NONE,      LargeDiscType.SOUTH_SIDE,
+                LargeDiscType.NORTH_SIDE,LargeDiscType.MIDDLE,    LargeDiscType.SOUTH_SIDE,
                 LargeDiscType.NW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.SW_CORNER,
         };
 
@@ -100,12 +224,22 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
                 LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
                 LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
                 LargeDiscType.SE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.NE_CORNER,
-                LargeDiscType.SOUTH_SIDE,LargeDiscType.NONE,      LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SOUTH_SIDE,LargeDiscType.MIDDLE,    LargeDiscType.NORTH_SIDE,
                 LargeDiscType.SOUTH_SIDE,                         LargeDiscType.NORTH_SIDE,
-                LargeDiscType.SOUTH_SIDE,LargeDiscType.NONE,      LargeDiscType.NORTH_SIDE,
+                LargeDiscType.SOUTH_SIDE,LargeDiscType.MIDDLE,    LargeDiscType.NORTH_SIDE,
                 LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
                 LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
                 LargeDiscType.SW_CORNER, LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER
+        };
+
+        LargeDiscType[] cardinalPositionsY = {
+                LargeDiscType.EAST_SIDE, LargeDiscType.NORTH_SIDE, LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.SOUTH_SIDE, LargeDiscType.WEST_SIDE,
+        };
+
+        LargeDiscType[] cornerPositionsY = {
+                LargeDiscType.NE_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.SE_CORNER, LargeDiscType.SW_CORNER,
         };
 
 
@@ -119,6 +253,93 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
                 } else if(neighbors[i].getValue(AXIS) == Direction.Axis.Z) {
                     return relativePositionsZ[i];
                 }
+            }
+
+        }
+        */
+
+        for (int i = 0; i < neighborsY.length; i++) {
+
+            if (neighborsY[i].getBlock() == centerBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighborsY[i].getValue(AXIS) == Direction.Axis.Y) {
+                    return relativePositionsY[i];
+                }
+            }
+            if (neighborsY[i].getBlock() == sideBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if (neighborsY[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
+                {
+                    return cornerPositionsY_SW[i];
+                }
+                if (neighborsY[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
+                {
+                    return cornerPositionsY_SE[i];
+                }
+                if (neighborsY[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
+                {
+                    return cornerPositionsY_NW[i];
+                }
+                if (neighborsY[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
+                {
+                    return cornerPositionsY_NE[i];
+                } else return LargeDiscType.NONE;
+
+            }
+
+        }
+        for (int i = 0; i < neighborsX.length; i++) {
+
+            if (neighborsX[i].getBlock() == centerBlock && neighborsX[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighborsX[i].getValue(AXIS) == Direction.Axis.X) {
+                    return relativePositionsX[i];
+                }
+            }
+
+            if (neighborsX[i].getBlock() == sideBlock && neighborsX[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if (neighborsX[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
+                {
+                    return cornerPositionsX_SW[i];
+                }
+                if (neighborsX[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
+                {
+                    return cornerPositionsX_SE[i];
+                }
+                if (neighborsX[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
+                {
+                    return cornerPositionsX_NW[i];
+                }
+                if (neighborsX[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
+                {
+                    return cornerPositionsX_NE[i];
+                } else return LargeDiscType.NONE;
+
+            }
+        }
+        for (int i = 0; i < neighborsZ.length; i++) {
+
+            if (neighborsZ[i].getBlock() == centerBlock && neighborsZ[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighborsZ[i].getValue(AXIS) == Direction.Axis.Z) {
+                    return relativePositionsZ[i];
+                }
+            }
+
+            if (neighborsZ[i].getBlock() == sideBlock && neighborsZ[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
+                {
+                    return cornerPositionsZ_SW[i];
+                }
+                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
+                {
+                    return cornerPositionsZ_SE[i];
+                }
+                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
+                {
+                    return cornerPositionsZ_NW[i];
+                }
+                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
+                {
+                    return cornerPositionsZ_NE[i];
+                } else return LargeDiscType.NONE;
+
             }
 
         }

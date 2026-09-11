@@ -6,7 +6,7 @@ import net.larchfen.gothicafflictions.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -23,7 +23,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
                 .add(ModBlocks.HEARTWOOD_PLANKS.get())
-                .add(ModBlocks.ANCIENT_OAK_LOG_1.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_4.get())
@@ -89,7 +89,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
-                .add(ModBlocks.ANCIENT_OAK_LOG_1.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_4.get())
@@ -98,6 +98,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ANCIENT_OAK_LOG_7.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_8.get());
 
+        tag(BlockTags.OAK_LOGS)
+                .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.ANCIENT_OAK_LOG.get());
+
+        tag(ModTags.Blocks.MEGATREE_CENTERS)
+                .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(Blocks.STRIPPED_OAK_LOG);
 
     }
 }

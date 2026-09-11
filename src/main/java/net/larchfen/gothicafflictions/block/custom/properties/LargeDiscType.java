@@ -3,9 +3,6 @@ package net.larchfen.gothicafflictions.block.custom.properties;
 import net.minecraft.util.StringRepresentable;
 
 public enum LargeDiscType implements StringRepresentable {
-    TOP("top"),
-    MIDDLE("middle"),
-    BOTTOM("bottom"),
 
     NW_CORNER("nw_corner"),
     NORTH_SIDE("north_side"),
@@ -15,6 +12,7 @@ public enum LargeDiscType implements StringRepresentable {
     SOUTH_SIDE("south_side"),
     SW_CORNER("sw_corner"),
     WEST_SIDE("west_side"),
+    MIDDLE("middle"),
     NONE("none");
 
     private final String name;

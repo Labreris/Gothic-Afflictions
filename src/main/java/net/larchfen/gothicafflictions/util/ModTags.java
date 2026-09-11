@@ -16,6 +16,8 @@ public class ModTags {
         // BLOCK TAG CHECKLIST: 1. ADD IT HERE, 2. ADD TO ModBlockTagProvider
         public static final TagKey<Block> HEMATITE_BLOCKS = createTag("hematite_blocks");
 
+        public static final TagKey<Block> MEGATREE_CENTERS = createTag("megatree_centers");
+
         public static final TagKey<Block> NEEDS_SILVER_TOOL = createTag("needs_silver_tool");
         public static final TagKey<Block> INCORRECT_FOR_SILVER_TOOL = createTag("incorrect_for_silver_tool");
 

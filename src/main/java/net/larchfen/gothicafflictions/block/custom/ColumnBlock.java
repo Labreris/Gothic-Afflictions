@@ -34,8 +34,7 @@ public class ColumnBlock extends RotatedPillarBlock {
 
         BlockState state = this.defaultBlockState().setValue(AXIS, axis);
         state = state.setValue(
-                TYPE,
-                getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis))
+                TYPE, getType(state, getRelativeTop(level, pos, axis), getRelativeBottom(level, pos, axis))
         );
         return state;
     }

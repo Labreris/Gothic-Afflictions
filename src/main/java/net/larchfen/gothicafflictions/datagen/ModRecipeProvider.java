@@ -16,6 +16,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SlabBlock;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 
@@ -194,6 +195,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
 
         // BLOCKS RECIPES GO HERE
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ANCIENT_OAK_LOG.get(), 8)
+                .pattern("###")
+                .pattern("# #")
+                .pattern("###")
+                .define('#', Blocks.OAK_LOG.asItem())
+                .unlockedBy("has_ancient_oak_log", has(ModBlocks.ANCIENT_OAK_LOG)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.TALCUM_BLOCK.get())
                 .pattern("TT")

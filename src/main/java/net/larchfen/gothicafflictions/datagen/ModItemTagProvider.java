@@ -86,7 +86,8 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SILVER_BOOTS.get());
 
         this.tag(ItemTags.LOGS_THAT_BURN)
-                .add(ModBlocks.HEARTWOOD_LOG.get().asItem());
+                .add(ModBlocks.HEARTWOOD_LOG.get().asItem())
+                .add(ModBlocks.ANCIENT_OAK_LOG.get().asItem());
 
         this.tag(ItemTags.PLANKS)
                 .add(ModBlocks.HEARTWOOD_PLANKS.get().asItem());

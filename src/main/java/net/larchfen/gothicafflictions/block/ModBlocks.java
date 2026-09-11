@@ -6,7 +6,6 @@ import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
 import net.larchfen.gothicafflictions.block.custom.ModFlammableRotatedPillarBlock;
 import net.larchfen.gothicafflictions.block.custom.WideColumnBlock;
 import net.larchfen.gothicafflictions.item.ModItems;
-import net.larchfen.gothicafflictions.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -31,7 +30,7 @@ public class ModBlocks {
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
 
-    public static final DeferredBlock<Block> ANCIENT_OAK_LOG_1 = registerBlock("ancient_oak_log_1",
+    public static final DeferredBlock<Block> ANCIENT_OAK_LOG = registerBlock("ancient_oak_log",
             () -> new WideColumnBlock(BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_LOG)
             ));
