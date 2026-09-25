@@ -53,6 +53,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         dropSelf(ModBlocks.HEARTWOOD_LOG.get());
         dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
 
+        dropOther(ModBlocks.ANCIENT_OAK_WOOD.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_2.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG_3.get(), Blocks.OAK_LOG.asItem());

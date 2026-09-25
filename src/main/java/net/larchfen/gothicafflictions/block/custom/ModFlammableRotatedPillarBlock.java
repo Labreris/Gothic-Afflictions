@@ -6,15 +6,20 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.block.Mirror;
 import net.minecraft.world.level.block.RotatedPillarBlock;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.ItemAbility;
 import org.jetbrains.annotations.Nullable;
+
+import static net.minecraft.world.level.block.state.properties.BlockStateProperties.FACING;
 
 public class ModFlammableRotatedPillarBlock extends RotatedPillarBlock {
     public ModFlammableRotatedPillarBlock(Properties properties) {
         super(properties);
     }
+
 
     @Override
     public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {

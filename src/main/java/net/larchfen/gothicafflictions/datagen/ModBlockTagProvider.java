@@ -89,6 +89,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.LOGS_THAT_BURN)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.ANCIENT_OAK_WOOD.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
@@ -100,6 +101,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         tag(BlockTags.OAK_LOGS)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.ANCIENT_OAK_WOOD.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG.get());
 
         tag(ModTags.Blocks.MEGATREE_CENTERS)

@@ -71,6 +71,7 @@ public class ModCreativeModeTabs {
 
                         //CREATIVE MODE TAB BLOCKS GO HERE
 
+                        output.accept(ModBlocks.ANCIENT_OAK_WOOD);
                         output.accept(ModBlocks.ANCIENT_OAK_LOG);
                         output.accept(ModBlocks.HEARTWOOD_LOG);
                         output.accept(ModBlocks.HEARTWOOD_WOOD);

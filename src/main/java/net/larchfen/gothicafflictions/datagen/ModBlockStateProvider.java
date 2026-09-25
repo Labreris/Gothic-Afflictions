@@ -41,6 +41,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.RAW_SILVER_BLOCK);
         blockWithItem(ModBlocks.SILVER_BLOCK);
         blockWithItem(ModBlocks.HEARTWOOD_PLANKS);
+        blockWithItem(ModBlocks.ANCIENT_OAK_WOOD);
 
         logBlock((RotatedPillarBlock) ModBlocks.HEARTWOOD_LOG.get());
         axisBlock(((RotatedPillarBlock) ModBlocks.HEARTWOOD_WOOD.get()), blockTexture(ModBlocks.HEARTWOOD_LOG.get()), blockTexture(ModBlocks.HEARTWOOD_LOG.get()));

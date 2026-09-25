@@ -29,6 +29,18 @@
     "type=sw_corner,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1","x": 270},
     "type=west_side,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_8","x": 90,"y": 90},
     "type=west_side,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_8"},
-    "type=west_side,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_8","x": 270}
+    "type=west_side,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_8","x": 270},
+    "type=small_nw_corner,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_7","x": 90,"y": 90},
+    "type=small_nw_corner,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_7"},
+    "type=small_nw_corner,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_7","x": 270},
+    "type=small_ne_corner,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_5","x": 90,"y": 90},
+    "type=small_ne_corner,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_5"},
+    "type=small_ne_corner,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_5","x": 270},
+    "type=small_se_corner,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_3","x": 90,"y": 90},
+    "type=small_se_corner,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_3"},
+    "type=small_se_corner,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_3","x": 270},
+    "type=small_sw_corner,axis=x": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1","x": 90,"y": 90},
+    "type=small_sw_corner,axis=y": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1"},
+    "type=small_sw_corner,axis=z": {"model": "gothicafflictions:block/mega_tree/ancient_oak_log_1","x": 270}
   }
 }

@@ -30,6 +30,11 @@ public class ModBlocks {
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
 
+    public static final DeferredBlock<Block> ANCIENT_OAK_WOOD = registerBlock("ancient_oak_wood",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_WOOD)
+            ));
+
     public static final DeferredBlock<Block> ANCIENT_OAK_LOG = registerBlock("ancient_oak_log",
             () -> new WideColumnBlock(BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_LOG)

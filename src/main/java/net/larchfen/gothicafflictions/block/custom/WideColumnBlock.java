@@ -1,13 +1,10 @@
 package net.larchfen.gothicafflictions.block.custom;
 
-import com.llamalad7.mixinextras.lib.apache.commons.ArrayUtils;
 import net.larchfen.gothicafflictions.block.ModBlocks;
-import net.larchfen.gothicafflictions.block.custom.properties.CornerOrNotType;
 import net.larchfen.gothicafflictions.block.custom.properties.LargeDiscType;
 import net.larchfen.gothicafflictions.block.custom.properties.ModBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Vec3i;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -101,10 +98,12 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
     }
 
     public LargeDiscType getType(Level level, BlockPos pos, Block centerBlock, Block sideBlock, BlockPlaceContext context) {
+        BlockState[] neighbors = getSurroundingNeighbors(level, pos, 0);
         BlockState[] neighborsY = getSurroundingNeighbors(level, pos, 1);
         BlockState[] neighborsX = getSurroundingNeighbors(level, pos, 2);
         BlockState[] neighborsZ = getSurroundingNeighbors(level, pos, 3);
 
+        // 3x3 PLACEMENT
         LargeDiscType[] relativePositionsY = {
                 LargeDiscType.NE_CORNER, LargeDiscType.EAST_SIDE, LargeDiscType.SE_CORNER,
                 LargeDiscType.NORTH_SIDE,                         LargeDiscType.SOUTH_SIDE,
@@ -122,77 +121,150 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
                 LargeDiscType.SOUTH_SIDE,                            LargeDiscType.NORTH_SIDE,
                 LargeDiscType.SW_CORNER,    LargeDiscType.WEST_SIDE, LargeDiscType.NW_CORNER,
         };
-
+        // 2x2 PLACEMENT (corners)
         LargeDiscType[] cornerPositionsY_SW = {
-                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
-                LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER,
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.SW_CORNER,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE
         };
 
         LargeDiscType[] cornerPositionsY_SE = {
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
-                LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
-                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER,                          LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE
         };
 
         LargeDiscType[] cornerPositionsY_NW = {
-                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
-                LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
-                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER,                          LargeDiscType.NW_CORNER,
+                LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE
         };
 
         LargeDiscType[] cornerPositionsY_NE = {
-                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
-                LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
-                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER,                          LargeDiscType.NE_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.SW_CORNER
         };
 
         LargeDiscType[] cornerPositionsX_SW = {
                 LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
                 LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE
         };
 
         LargeDiscType[] cornerPositionsX_SE = {
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
                 LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
                 LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
         };
 
         LargeDiscType[] cornerPositionsX_NW = {
                 LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
                 LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
                 LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
         };
 
         LargeDiscType[] cornerPositionsX_NE = {
                 LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
                 LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
                 LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
         };
 
         LargeDiscType[] cornerPositionsZ_SW = {
-                LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER, LargeDiscType.NONE,
-                LargeDiscType.NW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.NONE,     LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE,     LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE,     LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE,     LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.NONE,                              LargeDiscType.NW_CORNER,
+                LargeDiscType.NONE,     LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER,
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+
         };
 
         LargeDiscType[] cornerPositionsZ_SE = {
                 LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
-                LargeDiscType.NE_CORNER,                          LargeDiscType.NONE,
-                LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE,      LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE,                               LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE,      LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER,
+                LargeDiscType.NONE, LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER
         };
 
         LargeDiscType[] cornerPositionsZ_NW = {
-                LargeDiscType.NONE, LargeDiscType.NE_CORNER, LargeDiscType.SE_CORNER,
-                LargeDiscType.NONE,                          LargeDiscType.SW_CORNER,
+                LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
                 LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
         };
 
         LargeDiscType[] cornerPositionsZ_NE = {
                 LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
-                LargeDiscType.NONE,                          LargeDiscType.SE_CORNER,
-                LargeDiscType.NONE, LargeDiscType.NW_CORNER, LargeDiscType.SW_CORNER,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.NONE, LargeDiscType.NONE,      LargeDiscType.NONE,
+                LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SE_CORNER,                          LargeDiscType.NONE,
+                LargeDiscType.SE_CORNER, LargeDiscType.NE_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
+                LargeDiscType.SW_CORNER, LargeDiscType.NW_CORNER, LargeDiscType.NONE,
         };
 
         /*
@@ -258,34 +330,16 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
         }
         */
 
+        // Detects 3x3 heartwood centers in the Y axis
         for (int i = 0; i < neighborsY.length; i++) {
 
-            if (neighborsY[i].getBlock() == centerBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+            if (neighborsY[i].getBlock() == centerBlock && neighborsY[i].getBlock() != sideBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
                 if(neighborsY[i].getValue(AXIS) == Direction.Axis.Y) {
                     return relativePositionsY[i];
                 }
             }
-            if (neighborsY[i].getBlock() == sideBlock && neighborsY[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
-                if (neighborsY[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
-                {
-                    return cornerPositionsY_SW[i];
-                }
-                if (neighborsY[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
-                {
-                    return cornerPositionsY_SE[i];
-                }
-                if (neighborsY[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
-                {
-                    return cornerPositionsY_NW[i];
-                }
-                if (neighborsY[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
-                {
-                    return cornerPositionsY_NE[i];
-                } else return LargeDiscType.NONE;
-
-            }
-
         }
+        // Detects 3x3 heartwood centers in the X axis
         for (int i = 0; i < neighborsX.length; i++) {
 
             if (neighborsX[i].getBlock() == centerBlock && neighborsX[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
@@ -294,26 +348,8 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
                 }
             }
 
-            if (neighborsX[i].getBlock() == sideBlock && neighborsX[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
-                if (neighborsX[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
-                {
-                    return cornerPositionsX_SW[i];
-                }
-                if (neighborsX[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
-                {
-                    return cornerPositionsX_SE[i];
-                }
-                if (neighborsX[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
-                {
-                    return cornerPositionsX_NW[i];
-                }
-                if (neighborsX[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
-                {
-                    return cornerPositionsX_NE[i];
-                } else return LargeDiscType.NONE;
-
-            }
         }
+        // Detects 3x3 heartwood centers in the Z axis
         for (int i = 0; i < neighborsZ.length; i++) {
 
             if (neighborsZ[i].getBlock() == centerBlock && neighborsZ[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
@@ -322,26 +358,55 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
                 }
             }
 
-            if (neighborsZ[i].getBlock() == sideBlock && neighborsZ[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
-                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.SW_CORNER)
-                {
-                    return cornerPositionsZ_SW[i];
+        }
+        // Detects 2x2 corners in the Y axis
+        for (int i = 0; i < neighbors.length; i++) {
+
+            if (neighbors[i].getBlock() != centerBlock && neighbors[i].getBlock() == sideBlock && neighbors[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+
+                if(neighbors[i].getValue(AXIS) == Direction.Axis.Y) {
+                    if(neighbors[i].getValue(TYPE) == LargeDiscType.NE_CORNER) {
+                        return cornerPositionsY_NE[i];
+                    } else if(neighbors[i].getValue(TYPE) == LargeDiscType.NW_CORNER) {
+                        return cornerPositionsY_NW[i];
+                    } else if(neighbors[i].getValue(TYPE) == LargeDiscType.SE_CORNER) {
+                        return cornerPositionsY_SE[i];
+                    } else if(neighbors[i].getValue(TYPE) == LargeDiscType.SW_CORNER) {
+                        return cornerPositionsY_SW[i];
+                    }
                 }
-                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.SE_CORNER)
-                {
-                    return cornerPositionsZ_SE[i];
-                }
-                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.NW_CORNER)
-                {
-                    return cornerPositionsZ_NW[i];
-                }
-                if (neighborsZ[i].getValue(TYPE) == LargeDiscType.NE_CORNER)
-                {
-                    return cornerPositionsZ_NE[i];
-                } else return LargeDiscType.NONE;
 
             }
+        }
+        // Detects 2x2 corners in the X axis
+        for (int i = 0; i < neighbors.length; i++) {
 
+            if (neighbors[i].getBlock() != centerBlock && neighbors[i].getBlock() == sideBlock && neighbors[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighbors[i].getValue(AXIS) == Direction.Axis.X && neighbors[i].getValue(TYPE) == LargeDiscType.NE_CORNER) {
+                    return cornerPositionsX_NE[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.X && neighbors[i].getValue(TYPE) == LargeDiscType.NW_CORNER) {
+                    return cornerPositionsX_NW[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.X && neighbors[i].getValue(TYPE) == LargeDiscType.SE_CORNER) {
+                    return cornerPositionsX_SE[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.X && neighbors[i].getValue(TYPE) == LargeDiscType.SW_CORNER) {
+                    return cornerPositionsX_SW[i];
+                }
+            }
+        }
+        // Detects 2x2 corners in the Z axis
+        for (int i = 0; i < neighbors.length; i++) {
+
+            if (neighbors[i].getBlock() != centerBlock && neighbors[i].getBlock() == sideBlock && neighbors[i].getValue(AXIS) == context.getClickedFace().getAxis()) {
+                if(neighbors[i].getValue(AXIS) == Direction.Axis.Z && neighbors[i].getValue(TYPE) == LargeDiscType.NE_CORNER) {
+                    return cornerPositionsZ_NE[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.Z && neighbors[i].getValue(TYPE) == LargeDiscType.NW_CORNER) {
+                    return cornerPositionsZ_NW[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.Z && neighbors[i].getValue(TYPE) == LargeDiscType.SE_CORNER) {
+                    return cornerPositionsZ_SE[i];
+                } else if(neighbors[i].getValue(AXIS) == Direction.Axis.Z && neighbors[i].getValue(TYPE) == LargeDiscType.SW_CORNER) {
+                    return cornerPositionsZ_SW[i];
+                }
+            }
         }
         return LargeDiscType.NONE;
     }
