@@ -86,11 +86,17 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .add(ModItems.SILVER_BOOTS.get());
 
         this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(ModBlocks.DUSKWOOD_LOG.get().asItem())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_LOG.get().asItem())
+                .add(ModBlocks.DUSKWOOD_WOOD.get().asItem())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_WOOD.get().asItem())
                 .add(ModBlocks.HEARTWOOD_LOG.get().asItem())
+                .add(ModBlocks.HEARTWOOD_WOOD.get().asItem())
                 .add(ModBlocks.ANCIENT_OAK_LOG.get().asItem())
                 .add(ModBlocks.ANCIENT_OAK_WOOD.get().asItem());
 
         this.tag(ItemTags.PLANKS)
-                .add(ModBlocks.HEARTWOOD_PLANKS.get().asItem());
+                .add(ModBlocks.HEARTWOOD_PLANKS.get().asItem())
+                .add(ModBlocks.DUSKWOOD_PLANKS.get().asItem());
     }
 }

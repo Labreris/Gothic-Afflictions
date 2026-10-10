@@ -8,6 +8,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -24,6 +25,80 @@ public class WideColumnBlock extends ModFlammableRotatedPillarBlock {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(TYPE, LargeDiscType.NONE));
+    }
+
+    //Because all of the 8 sections of the tree are locked in place and dont handle being rotated well, this code is there to help
+    //It's not very efficient but it works
+    @Override
+    public BlockState rotate(BlockState state, Rotation rotation) {
+        state = super.rotate(state, rotation);
+
+        return switch (rotation) {
+            case NONE -> state;
+
+            case CLOCKWISE_90 ->
+                    state.setValue(TYPE, rotateClockwise90(state.getValue(TYPE)));
+
+            case CLOCKWISE_180 ->
+                    state.setValue(TYPE, rotate180(state.getValue(TYPE)));
+
+            case COUNTERCLOCKWISE_90 ->
+                    state.setValue(TYPE, rotateCounterClockwise90(state.getValue(TYPE)));
+        };
+    }
+    //Helper method for turning the directional types into what they need to be on a rotation
+    private static LargeDiscType rotateCounterClockwise90(LargeDiscType type) {
+        return switch (type) {
+            case NW_CORNER -> LargeDiscType.NE_CORNER;
+            case NORTH_SIDE -> LargeDiscType.EAST_SIDE;
+            case NE_CORNER -> LargeDiscType.SE_CORNER;
+
+            case EAST_SIDE -> LargeDiscType.SOUTH_SIDE;
+            case SE_CORNER -> LargeDiscType.SW_CORNER;
+
+            case SOUTH_SIDE -> LargeDiscType.WEST_SIDE;
+            case SW_CORNER -> LargeDiscType.NW_CORNER;
+
+            case WEST_SIDE -> LargeDiscType.NORTH_SIDE;
+
+            case MIDDLE, NONE -> type;
+        };
+    }
+    //Helper method for turning the directional types into what they need to be on a rotation
+    private static LargeDiscType rotate180(LargeDiscType type) {
+        return switch (type) {
+            case NW_CORNER -> LargeDiscType.SE_CORNER;
+            case NORTH_SIDE -> LargeDiscType.SOUTH_SIDE;
+            case NE_CORNER -> LargeDiscType.SW_CORNER;
+
+            case EAST_SIDE -> LargeDiscType.WEST_SIDE;
+            case SE_CORNER -> LargeDiscType.NW_CORNER;
+
+            case SOUTH_SIDE -> LargeDiscType.NORTH_SIDE;
+            case SW_CORNER -> LargeDiscType.NE_CORNER;
+
+            case WEST_SIDE -> LargeDiscType.EAST_SIDE;
+
+            case MIDDLE, NONE -> type;
+        };
+    }
+    //Helper method for turning the directional types into what they need to be on a rotation
+    private static LargeDiscType rotateClockwise90(LargeDiscType type) {
+        return switch (type) {
+            case NW_CORNER -> LargeDiscType.SW_CORNER;
+            case NORTH_SIDE -> LargeDiscType.WEST_SIDE;
+            case NE_CORNER -> LargeDiscType.NW_CORNER;
+
+            case EAST_SIDE -> LargeDiscType.NORTH_SIDE;
+            case SE_CORNER -> LargeDiscType.NE_CORNER;
+
+            case SOUTH_SIDE -> LargeDiscType.EAST_SIDE;
+            case SW_CORNER -> LargeDiscType.SE_CORNER;
+
+            case WEST_SIDE -> LargeDiscType.SOUTH_SIDE;
+
+            case MIDDLE, NONE -> type;
+        };
     }
 
     @Nullable

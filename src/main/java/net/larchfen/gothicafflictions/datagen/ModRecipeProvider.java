@@ -194,7 +194,44 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('#', ModItems.SILVER_INGOT.get())
                 .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
 
+        //
         // BLOCKS RECIPES GO HERE
+        //
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.DUSKWOOD_PLANKS.get(), 4)
+                .requires(ModBlocks.DUSKWOOD_LOG)
+                .unlockedBy("has_duskwood_log", has(ModBlocks.HEARTWOOD_LOG)).save(recipeOutput, "gothicafflictions:duskwood_planks_from_log");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.DUSKWOOD_PLANKS.get(), 4)
+                .requires(ModBlocks.DUSKWOOD_WOOD)
+                .unlockedBy("has_duskwood_wood", has(ModBlocks.DUSKWOOD_WOOD)).save(recipeOutput, "gothicafflictions:duskwood_planks_from_wood");
+
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HEARTWOOD_PLANKS.get(), 4)
+                .requires(ModBlocks.HEARTWOOD_LOG)
+                .unlockedBy("has_heartwood_log", has(ModBlocks.HEARTWOOD_LOG)).save(recipeOutput, "gothicafflictions:heartwood_planks_from_log");
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HEARTWOOD_PLANKS.get(), 4)
+                .requires(ModBlocks.HEARTWOOD_WOOD)
+                .unlockedBy("has_heartwood_wood", has(ModBlocks.HEARTWOOD_WOOD)).save(recipeOutput, "gothicafflictions:heartwood_planks_from_wood");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.HEARTWOOD_WOOD.get(), 3)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModBlocks.HEARTWOOD_LOG.get())
+                .unlockedBy("has_heartwood_log", has(ModBlocks.HEARTWOOD_LOG)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.DUSKWOOD_WOOD.get(), 3)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModBlocks.DUSKWOOD_LOG.get())
+                .unlockedBy("has_duskwood_log", has(ModBlocks.DUSKWOOD_LOG)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.STRIPPED_DUSKWOOD_WOOD.get(), 3)
+                .pattern("##")
+                .pattern("##")
+                .define('#', ModBlocks.STRIPPED_DUSKWOOD_LOG.get())
+                .unlockedBy("has_stripped_duskwood_log", has(ModBlocks.STRIPPED_DUSKWOOD_LOG)).save(recipeOutput);
 
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.ANCIENT_OAK_LOG.get(), 8)
                 .pattern("###")
@@ -235,6 +272,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('S', ModItems.SILVER_INGOT.get())
                 .unlockedBy("has_silver_ingot", has(ModItems.SILVER_INGOT)).save(recipeOutput);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SILVER_BRICKS.get(), 16)
+                .pattern("SS")
+                .pattern("SS")
+                .define('S', ModBlocks.SILVER_BLOCK.get())
+                .unlockedBy("has_silver_block", has(ModBlocks.SILVER_BLOCK)).save(recipeOutput);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.SILVER_BLOCK.get(), 1)
+                .pattern("SS")
+                .pattern("SS")
+                .define('S', ModBlocks.SILVER_BRICKS.get())
+                .unlockedBy("has_silver_block", has(ModBlocks.SILVER_BLOCK)).save(recipeOutput, "gothicafflictions:silver_block_from_bricks");
+
         ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.POLISHED_HEMATITE.get(), 4)
                 .pattern("HH")
                 .pattern("HH")
@@ -253,9 +302,6 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .define('P', ModBlocks.POLISHED_HEMATITE.get())
                 .unlockedBy("has_polished_hematite", has(ModBlocks.POLISHED_HEMATITE)).save(recipeOutput);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.HEARTWOOD_PLANKS.get())
-                .requires(ModBlocks.HEARTWOOD_LOG, 4)
-                .unlockedBy("has_heartwood_log", has(ModBlocks.HEARTWOOD_LOG)).save(recipeOutput);
 
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.SANGUINITE_BLOCK.get())
                 .requires(ModItems.SANGUINITE_INGOT, 9)
@@ -266,13 +312,55 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_WALL.get(), ModBlocks.POLISHED_HEMATITE.get());
         wall(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMATITE_BRICK_WALL.get(), ModBlocks.HEMATITE_BRICKS.get());
 
+        fenceBuilder(ModBlocks.HEARTWOOD_FENCE.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        fenceBuilder(ModBlocks.DUSKWOOD_FENCE.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
+        fenceGateBuilder(ModBlocks.HEARTWOOD_FENCE_GATE.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        fenceGateBuilder(ModBlocks.DUSKWOOD_FENCE_GATE.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
+        pressurePlateBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEARTWOOD_PRESSURE_PLATE.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        pressurePlateBuilder(RecipeCategory.BUILDING_BLOCKS, ModBlocks.DUSKWOOD_PRESSURE_PLATE.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
+        buttonBuilder(ModBlocks.HEARTWOOD_BUTTON.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        buttonBuilder(ModBlocks.DUSKWOOD_BUTTON.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
+        doorBuilder(ModBlocks.HEARTWOOD_DOOR.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        trapdoorBuilder(ModBlocks.HEARTWOOD_TRAPDOOR.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+
+        doorBuilder(ModBlocks.DUSKWOOD_DOOR.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
+        trapdoorBuilder(ModBlocks.DUSKWOOD_TRAPDOOR.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
+
         stairBuilder(ModBlocks.POLISHED_HEMATITE_STAIRS.get(), Ingredient.of(ModBlocks.POLISHED_HEMATITE)).group("polished_hematite")
                 .unlockedBy("has_polished_hematite", has(ModBlocks.POLISHED_HEMATITE)).save(recipeOutput);
         stairBuilder(ModBlocks.HEMATITE_BRICK_STAIRS.get(), Ingredient.of(ModBlocks.HEMATITE_BRICKS)).group("hematite_bricks")
                 .unlockedBy("has_hematite_bricks", has(ModBlocks.HEMATITE_BRICKS)).save(recipeOutput);
+        stairBuilder(ModBlocks.HEARTWOOD_STAIRS.get(), Ingredient.of(ModBlocks.HEARTWOOD_PLANKS)).group("heartwood")
+                .unlockedBy("has_heartwood", has(ModBlocks.HEARTWOOD_PLANKS)).save(recipeOutput);
+        stairBuilder(ModBlocks.DUSKWOOD_STAIRS.get(), Ingredient.of(ModBlocks.DUSKWOOD_PLANKS)).group("duskwood")
+                .unlockedBy("has_duskwood", has(ModBlocks.DUSKWOOD_PLANKS)).save(recipeOutput);
 
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.POLISHED_HEMATITE_SLAB.get(), ModBlocks.POLISHED_HEMATITE.get());
         slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEMATITE_BRICK_SLAB.get(), ModBlocks.HEMATITE_BRICKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.HEARTWOOD_SLAB.get(), ModBlocks.HEARTWOOD_PLANKS.get());
+        slab(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.DUSKWOOD_SLAB.get(), ModBlocks.DUSKWOOD_PLANKS.get());
 
         // STONECUTTING RECIPES
 

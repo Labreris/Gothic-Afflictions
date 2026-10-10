@@ -32,26 +32,75 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected void generate() {
+        dropSelf(ModBlocks.DUSKWOOD_LOG.get());
+        dropSelf(ModBlocks.STRIPPED_DUSKWOOD_LOG.get());
+        dropSelf(ModBlocks.DUSKWOOD_WOOD.get());
+        dropSelf(ModBlocks.STRIPPED_DUSKWOOD_WOOD.get());
+        dropSelf(ModBlocks.DUSKWOOD_SAPLING_ORANGE.get());
+        dropSelf(ModBlocks.DUSKWOOD_SAPLING_RED.get());
+        dropSelf(ModBlocks.DUSKWOOD_SAPLING_BLACK.get());
+
+
+        add(ModBlocks.DUSKWOOD_LEAVES_ORANGE.get(), block ->
+                createLeavesDrops(block, ModBlocks.DUSKWOOD_SAPLING_ORANGE.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(ModBlocks.DUSKWOOD_LEAVES_RED.get(), block ->
+                createLeavesDrops(block, ModBlocks.DUSKWOOD_SAPLING_RED.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(ModBlocks.DUSKWOOD_LEAVES_BLACK.get(), block ->
+                createLeavesDrops(block, ModBlocks.DUSKWOOD_SAPLING_BLACK.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+
         dropSelf(ModBlocks.CHISELED_POLISHED_HEMATITE.get());
         dropSelf(ModBlocks.HEMATITE_BRICKS.get());
-        dropSelf(ModBlocks.HEMATITE_BRICK_STAIRS.get());
         dropSelf(ModBlocks.HEMATITE_BRICK_WALL.get());
+        dropSelf(ModBlocks.POLISHED_HEMATITE_WALL.get());
+
+        dropSelf(ModBlocks.HEARTWOOD_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.HEARTWOOD_BUTTON.get());
+        dropSelf(ModBlocks.HEARTWOOD_FENCE.get());
+        dropSelf(ModBlocks.HEARTWOOD_FENCE_GATE.get());
+        dropSelf(ModBlocks.HEARTWOOD_STAIRS.get());
+        dropSelf(ModBlocks.HEARTWOOD_PLANKS.get());
+        dropSelf(ModBlocks.HEARTWOOD_LOG.get());
+        dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
+        dropSelf(ModBlocks.HEARTWOOD_TRAPDOOR.get());
+
+        dropSelf(ModBlocks.DUSKWOOD_PRESSURE_PLATE.get());
+        dropSelf(ModBlocks.DUSKWOOD_BUTTON.get());
+        dropSelf(ModBlocks.DUSKWOOD_FENCE.get());
+        dropSelf(ModBlocks.DUSKWOOD_FENCE_GATE.get());
+        dropSelf(ModBlocks.DUSKWOOD_STAIRS.get());
+        dropSelf(ModBlocks.DUSKWOOD_PLANKS.get());
+        dropSelf(ModBlocks.DUSKWOOD_LOG.get());
+        dropSelf(ModBlocks.DUSKWOOD_WOOD.get());
+        dropSelf(ModBlocks.DUSKWOOD_TRAPDOOR.get());
+
         dropSelf(ModBlocks.HEMATITE_PILLAR.get());
         dropSelf(ModBlocks.POLISHED_HEMATITE.get());
-        dropSelf(ModBlocks.POLISHED_HEMATITE_WALL.get());
+        dropSelf(ModBlocks.HEMATITE_BRICK_STAIRS.get());
         dropSelf(ModBlocks.POLISHED_HEMATITE_STAIRS.get());
+
+
         add(ModBlocks.POLISHED_HEMATITE_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.POLISHED_HEMATITE_SLAB.get()));
         add(ModBlocks.HEMATITE_BRICK_SLAB.get(),
                 block -> createSlabItemTable(ModBlocks.HEMATITE_BRICK_SLAB.get()));
+
+        add(ModBlocks.HEARTWOOD_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.HEARTWOOD_SLAB.get()));
+        add(ModBlocks.DUSKWOOD_SLAB.get(),
+                block -> createSlabItemTable(ModBlocks.DUSKWOOD_SLAB.get()));
+
         dropSelf(ModBlocks.TALCUM_BLOCK.get());
         dropSelf(ModBlocks.SANGUINITE_BLOCK.get());
+
         dropSelf(ModBlocks.RAW_SILVER_BLOCK.get());
         dropSelf(ModBlocks.SILVER_BLOCK.get());
+        dropSelf(ModBlocks.SILVER_BRICKS.get());
 
-        dropSelf(ModBlocks.HEARTWOOD_PLANKS.get());
-        dropSelf(ModBlocks.HEARTWOOD_LOG.get());
-        dropSelf(ModBlocks.HEARTWOOD_WOOD.get());
+
+
+        add(ModBlocks.HEARTWOOD_DOOR.get(), this::createDoorTable);
+
+        add(ModBlocks.DUSKWOOD_DOOR.get(), this::createDoorTable);
 
         dropOther(ModBlocks.ANCIENT_OAK_WOOD.get(), Blocks.OAK_LOG.asItem());
         dropOther(ModBlocks.ANCIENT_OAK_LOG.get(), Blocks.OAK_LOG.asItem());

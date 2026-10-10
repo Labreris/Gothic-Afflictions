@@ -68,9 +68,24 @@ public class ModItemModelProvider extends ItemModelProvider {
         basicItem(ModItems.ALCHEMICAL_FLAME.get());
         basicItem(ModItems.BURNING_ALKAHEST.get());
 
-        // WALL BLOCKS
+        // NON-BLOCK BLOCKS
         wallItem(ModBlocks.POLISHED_HEMATITE_WALL, ModBlocks.POLISHED_HEMATITE);
         wallItem(ModBlocks.HEMATITE_BRICK_WALL, ModBlocks.HEMATITE_BRICKS);
+
+        fenceItem(ModBlocks.HEARTWOOD_FENCE, ModBlocks.HEARTWOOD_PLANKS);
+        fenceItem(ModBlocks.HEARTWOOD_FENCE_GATE, ModBlocks.HEARTWOOD_PLANKS);
+        fenceItem(ModBlocks.DUSKWOOD_FENCE, ModBlocks.DUSKWOOD_PLANKS);
+        fenceItem(ModBlocks.DUSKWOOD_FENCE_GATE, ModBlocks.DUSKWOOD_PLANKS);
+
+        buttonItem(ModBlocks.HEARTWOOD_BUTTON, ModBlocks.HEARTWOOD_PLANKS);
+        buttonItem(ModBlocks.DUSKWOOD_BUTTON, ModBlocks.DUSKWOOD_PLANKS);
+
+        basicItem(ModBlocks.HEARTWOOD_DOOR.asItem());
+        basicItem(ModBlocks.DUSKWOOD_DOOR.asItem());
+
+        saplingItem(ModBlocks.DUSKWOOD_SAPLING_ORANGE);
+        saplingItem(ModBlocks.DUSKWOOD_SAPLING_RED);
+        saplingItem(ModBlocks.DUSKWOOD_SAPLING_BLACK);
 
         // TOOLS
         handheldItem(ModItems.SILVER_SWORD);

@@ -6,6 +6,7 @@ import net.larchfen.gothicafflictions.block.custom.GarlicCropBlock;
 import net.larchfen.gothicafflictions.block.custom.ModFlammableRotatedPillarBlock;
 import net.larchfen.gothicafflictions.block.custom.WideColumnBlock;
 import net.larchfen.gothicafflictions.item.ModItems;
+import net.larchfen.gothicafflictions.worldgen.tree.ModTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.valueproviders.UniformInt;
@@ -15,6 +16,10 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -30,8 +35,180 @@ public class ModBlocks {
     // 1. ADD IT HERE 2. ADD TO CREATIVE MENU 3. ADD IT IN CORRECT DATAGEN CLASSES 4. ADD ASSETS 5. ADD TRANSLATION
     // 6. ADD RECIPES AND LOOTTABLE 7. ADD MINEABILITY
 
-    public static final DeferredBlock<Block> ANCIENT_OAK_WOOD = registerBlock("ancient_oak_wood",
+    public static final DeferredBlock<Block> DUSKWOOD_SAPLING_ORANGE = registerBlock("duskwood_sapling_orange",
+            () -> new MangrovePropaguleBlock(ModTreeGrowers.DUSKWOOD_ORANGE,BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_SAPLING)) {
+                @Override
+                protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+                    return Blocks.OAK_SAPLING.defaultBlockState().getShape(level, pos, context);
+                }
+            }
+    );
+
+    public static final DeferredBlock<Block> DUSKWOOD_SAPLING_RED = registerBlock("duskwood_sapling_red",
+            () -> new MangrovePropaguleBlock(ModTreeGrowers.DUSKWOOD_RED,BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_SAPLING)) {
+                @Override
+                protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+                    return Blocks.OAK_SAPLING.defaultBlockState().getShape(level, pos, context);
+                }
+            }
+    );
+
+    public static final DeferredBlock<Block> DUSKWOOD_SAPLING_BLACK = registerBlock("duskwood_sapling_black",
+            () -> new MangrovePropaguleBlock(ModTreeGrowers.DUSKWOOD_BLACK,BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_SAPLING)) {
+                @Override
+                protected VoxelShape getShape(BlockState state, BlockGetter level, BlockPos pos, CollisionContext context) {
+                    return Blocks.OAK_SAPLING.defaultBlockState().getShape(level, pos, context);
+                }
+            }
+    );
+
+
+    public static final DeferredBlock<Block> DUSKWOOD_LEAVES_ORANGE = registerBlock("duskwood_leaves_orange",
+            () -> new LeavesBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 30;
+                }
+            }
+    );
+
+    public static final DeferredBlock<Block> DUSKWOOD_LEAVES_RED = registerBlock("duskwood_leaves_red",
+            () -> new LeavesBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 30;
+                }
+            }
+    );
+
+    public static final DeferredBlock<Block> DUSKWOOD_LEAVES_BLACK = registerBlock("duskwood_leaves_black",
+            () -> new LeavesBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_LEAVES)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 60;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 30;
+                }
+            }
+    );
+
+    public static final DeferredBlock<Block> DUSKWOOD_PLANKS = registerBlock("duskwood_planks",
             () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_PLANKS)) {
+                @Override
+                public boolean isFlammable(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return true;
+                }
+
+                @Override
+                public int getFlammability(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 20;
+                }
+
+                @Override
+                public int getFireSpreadSpeed(BlockState state, BlockGetter level, BlockPos pos, Direction direction) {
+                    return 5;
+                }
+            }
+    );
+
+    public static final DeferredBlock<PressurePlateBlock> DUSKWOOD_PRESSURE_PLATE = registerBlock("duskwood_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_PRESSURE_PLATE)
+            ));
+
+    public static final DeferredBlock<ButtonBlock> DUSKWOOD_BUTTON = registerBlock("duskwood_button",
+            () -> new ButtonBlock(BlockSetType.SPRUCE, 30, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_BUTTON)
+            ));
+
+    public static final DeferredBlock<DoorBlock> DUSKWOOD_DOOR = registerBlock("duskwood_door",
+            () -> new DoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_DOOR)
+            ));
+
+    public static final DeferredBlock<TrapDoorBlock> DUSKWOOD_TRAPDOOR = registerBlock("duskwood_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.SPRUCE, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.DARK_OAK_TRAPDOOR)
+            ));
+
+    public static final DeferredBlock<Block> DUSKWOOD_LOG = registerBlock("duskwood_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_LOG)
+            ));
+
+    public static final DeferredBlock<Block> STRIPPED_DUSKWOOD_LOG = registerBlock("stripped_duskwood_log",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.STRIPPED_SPRUCE_LOG)
+            ));
+
+    public static final DeferredBlock<Block> DUSKWOOD_WOOD = registerBlock("duskwood_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.SPRUCE_WOOD)
+            ));
+
+    public static final DeferredBlock<Block> STRIPPED_DUSKWOOD_WOOD = registerBlock("stripped_duskwood_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.STRIPPED_SPRUCE_WOOD)
+            ));
+
+
+    public static final DeferredBlock<PressurePlateBlock> HEARTWOOD_PRESSURE_PLATE = registerBlock("heartwood_pressure_plate",
+            () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_PRESSURE_PLATE)
+            ));
+
+    public static final DeferredBlock<ButtonBlock> HEARTWOOD_BUTTON = registerBlock("heartwood_button",
+            () -> new ButtonBlock(BlockSetType.OAK, 30, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_BUTTON)
+            ));
+
+    public static final DeferredBlock<DoorBlock> HEARTWOOD_DOOR = registerBlock("heartwood_door",
+            () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.OAK_DOOR)
+            ));
+
+    public static final DeferredBlock<TrapDoorBlock> HEARTWOOD_TRAPDOOR = registerBlock("heartwood_trapdoor",
+            () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.DARK_OAK_TRAPDOOR)
+            ));
+
+    public static final DeferredBlock<Block> ANCIENT_OAK_WOOD = registerBlock("ancient_oak_wood",
+            () -> new ModFlammableRotatedPillarBlock(BlockBehaviour.Properties
                     .ofFullCopy(Blocks.OAK_WOOD)
             ));
 
@@ -115,6 +292,11 @@ public class ModBlocks {
                     .ofFullCopy(Blocks.GOLD_BLOCK)
             ));
 
+    public static final DeferredBlock<Block> SILVER_BRICKS = registerBlock("silver_bricks",
+            () -> new Block(BlockBehaviour.Properties
+                    .ofFullCopy(Blocks.GOLD_BLOCK)
+            ));
+
     public static final DeferredBlock<Block> SANGUINITE_BLOCK = registerBlock("sanguinite_block",
             () -> new Block(BlockBehaviour.Properties.of()
                     .strength(4f)
@@ -156,11 +338,46 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()
                     .sound(SoundType.METAL)));
 
+    public static final DeferredBlock<StairBlock> HEARTWOOD_STAIRS = registerBlock("heartwood_stairs",
+            () -> new StairBlock(ModBlocks.HEARTWOOD_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS)
+            ));
+
+    public static final DeferredBlock<StairBlock> DUSKWOOD_STAIRS = registerBlock("duskwood_stairs",
+            () -> new StairBlock(ModBlocks.DUSKWOOD_PLANKS.get().defaultBlockState(),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_STAIRS)
+            ));
+
     public static final DeferredBlock<SlabBlock> POLISHED_HEMATITE_SLAB = registerBlock("polished_hematite_slab",
             () -> new SlabBlock(BlockBehaviour.Properties.of()
                             .strength(4f)
                             .requiresCorrectToolForDrops()
                             .sound(SoundType.METAL)));
+
+    public static final DeferredBlock<SlabBlock> DUSKWOOD_SLAB = registerBlock("duskwood_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_SLAB)
+            ));
+
+    public static final DeferredBlock<SlabBlock> HEARTWOOD_SLAB = registerBlock("heartwood_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB)
+            ));
+
+    public static final DeferredBlock<FenceBlock> DUSKWOOD_FENCE = registerBlock("duskwood_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_FENCE)
+            ));
+
+    public static final DeferredBlock<FenceBlock> HEARTWOOD_FENCE = registerBlock("heartwood_fence",
+            () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)
+            ));
+
+    public static final DeferredBlock<FenceGateBlock> DUSKWOOD_FENCE_GATE = registerBlock("duskwood_fence_gate",
+            () -> new FenceGateBlock(WoodType.SPRUCE, BlockBehaviour.Properties.ofFullCopy(Blocks.SPRUCE_FENCE)
+            ));
+
+    public static final DeferredBlock<FenceGateBlock> HEARTWOOD_FENCE_GATE = registerBlock("heartwood_fence_gate",
+            () -> new FenceGateBlock(WoodType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE)
+            ));
+
 
     public static final DeferredBlock<WallBlock> POLISHED_HEMATITE_WALL = registerBlock("polished_hematite_wall",
             () -> new WallBlock(BlockBehaviour.Properties.of()

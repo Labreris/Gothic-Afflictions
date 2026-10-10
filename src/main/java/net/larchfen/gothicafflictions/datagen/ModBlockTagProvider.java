@@ -6,7 +6,9 @@ import net.larchfen.gothicafflictions.util.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.fml.common.Mod;
 import net.neoforged.neoforge.common.data.BlockTagsProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
@@ -22,7 +24,31 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         tag(BlockTags.MINEABLE_WITH_AXE)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.HEARTWOOD_WOOD.get())
                 .add(ModBlocks.HEARTWOOD_PLANKS.get())
+                .add(ModBlocks.HEARTWOOD_STAIRS.get())
+                .add(ModBlocks.HEARTWOOD_SLAB.get())
+                .add(ModBlocks.HEARTWOOD_DOOR.get())
+                .add(ModBlocks.HEARTWOOD_TRAPDOOR.get())
+                .add(ModBlocks.HEARTWOOD_FENCE_GATE.get())
+                .add(ModBlocks.HEARTWOOD_FENCE.get())
+                .add(ModBlocks.HEARTWOOD_PRESSURE_PLATE.get())
+                .add(ModBlocks.HEARTWOOD_BUTTON.get())
+
+                .add(ModBlocks.DUSKWOOD_LOG.get())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_LOG.get())
+                .add(ModBlocks.DUSKWOOD_WOOD.get())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_WOOD.get())
+                .add(ModBlocks.DUSKWOOD_PLANKS.get())
+                .add(ModBlocks.DUSKWOOD_STAIRS.get())
+                .add(ModBlocks.DUSKWOOD_SLAB.get())
+                .add(ModBlocks.DUSKWOOD_DOOR.get())
+                .add(ModBlocks.DUSKWOOD_TRAPDOOR.get())
+                .add(ModBlocks.DUSKWOOD_FENCE_GATE.get())
+                .add(ModBlocks.DUSKWOOD_FENCE.get())
+                .add(ModBlocks.DUSKWOOD_PRESSURE_PLATE.get())
+                .add(ModBlocks.DUSKWOOD_BUTTON.get())
+
                 .add(ModBlocks.ANCIENT_OAK_LOG.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_3.get())
@@ -71,7 +97,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.DEEPSLATE_SILVER_ORE.get())
                 .add(ModBlocks.END_SILVER_ORE.get())
                 .add(ModBlocks.RAW_SILVER_BLOCK.get())
-                .add(ModBlocks.SILVER_BLOCK.get());
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.SILVER_BRICKS.get());
 
         tag(ModTags.Blocks.NEEDS_SILVER_TOOL)
                 .addTag(BlockTags.NEEDS_IRON_TOOL);
@@ -84,11 +111,46 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.POLISHED_HEMATITE_WALL.get())
                 .add(ModBlocks.HEMATITE_BRICK_WALL.get());
 
+        tag(BlockTags.FENCES)
+                .add(ModBlocks.HEARTWOOD_FENCE.get());
+        tag(BlockTags.WOODEN_FENCES)
+                .add(ModBlocks.HEARTWOOD_FENCE.get())
+                .add(ModBlocks.DUSKWOOD_FENCE.get());
+
+        tag(BlockTags.FENCE_GATES)
+                .add(ModBlocks.HEARTWOOD_FENCE_GATE.get())
+                .add(ModBlocks.DUSKWOOD_FENCE_GATE.get());
+
+        tag(BlockTags.WOODEN_BUTTONS)
+                .add(ModBlocks.HEARTWOOD_BUTTON.get())
+                .add(ModBlocks.DUSKWOOD_BUTTON.get());
+
+        tag(BlockTags.WOODEN_PRESSURE_PLATES)
+                .add(ModBlocks.HEARTWOOD_PRESSURE_PLATE.get())
+                .add(ModBlocks.DUSKWOOD_PRESSURE_PLATE.get());
+
+
+        tag(BlockTags.WOODEN_STAIRS)
+                .add(ModBlocks.HEARTWOOD_STAIRS.get())
+                .add(ModBlocks.DUSKWOOD_STAIRS.get());
+
+        tag(BlockTags.WOODEN_SLABS)
+                .add(ModBlocks.HEARTWOOD_SLAB.get())
+                .add(ModBlocks.DUSKWOOD_SLAB.get());
+
+
+
         tag(BlockTags.PLANKS)
-                .add(ModBlocks.HEARTWOOD_PLANKS.get());
+                .add(ModBlocks.HEARTWOOD_PLANKS.get())
+                .add(ModBlocks.DUSKWOOD_PLANKS.get());
 
         tag(BlockTags.LOGS_THAT_BURN)
+                .add(ModBlocks.DUSKWOOD_LOG.get())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_LOG.get())
+                .add(ModBlocks.DUSKWOOD_WOOD.get())
+                .add(ModBlocks.STRIPPED_DUSKWOOD_WOOD.get())
                 .add(ModBlocks.HEARTWOOD_LOG.get())
+                .add(ModBlocks.HEARTWOOD_WOOD.get())
                 .add(ModBlocks.ANCIENT_OAK_WOOD.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG_2.get())
@@ -104,9 +166,20 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 .add(ModBlocks.ANCIENT_OAK_WOOD.get())
                 .add(ModBlocks.ANCIENT_OAK_LOG.get());
 
+        tag(BlockTags.DOORS)
+                .add(ModBlocks.HEARTWOOD_DOOR.get())
+                .add(ModBlocks.DUSKWOOD_DOOR.get());
+
+        tag(BlockTags.TRAPDOORS)
+                .add(ModBlocks.HEARTWOOD_TRAPDOOR.get())
+                .add(ModBlocks.DUSKWOOD_TRAPDOOR.get());
+
         tag(ModTags.Blocks.MEGATREE_CENTERS)
                 .add(ModBlocks.HEARTWOOD_LOG.get())
                 .add(Blocks.STRIPPED_OAK_LOG);
 
+        tag(BlockTags.BEACON_BASE_BLOCKS)
+                .add(ModBlocks.SILVER_BLOCK.get())
+                .add(ModBlocks.SILVER_BRICKS.get());
     }
 }

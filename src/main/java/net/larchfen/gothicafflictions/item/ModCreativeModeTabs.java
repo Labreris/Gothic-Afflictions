@@ -71,11 +71,38 @@ public class ModCreativeModeTabs {
 
                         //CREATIVE MODE TAB BLOCKS GO HERE
 
+                        output.accept(ModBlocks.DUSKWOOD_LOG);
+                        output.accept(ModBlocks.STRIPPED_DUSKWOOD_LOG);
+                        output.accept(ModBlocks.DUSKWOOD_WOOD);
+                        output.accept(ModBlocks.STRIPPED_DUSKWOOD_WOOD);
+                        output.accept(ModBlocks.DUSKWOOD_LEAVES_ORANGE);
+                        output.accept(ModBlocks.DUSKWOOD_LEAVES_RED);
+                        output.accept(ModBlocks.DUSKWOOD_LEAVES_BLACK);
+                        output.accept(ModBlocks.DUSKWOOD_SAPLING_ORANGE);
+                        output.accept(ModBlocks.DUSKWOOD_SAPLING_RED);
+                        output.accept(ModBlocks.DUSKWOOD_SAPLING_BLACK);
+                        output.accept(ModBlocks.DUSKWOOD_PLANKS);
+                        output.accept(ModBlocks.DUSKWOOD_STAIRS);
+                        output.accept(ModBlocks.DUSKWOOD_SLAB);
+                        output.accept(ModBlocks.DUSKWOOD_FENCE);
+                        output.accept(ModBlocks.DUSKWOOD_FENCE_GATE);
+                        output.accept(ModBlocks.DUSKWOOD_DOOR);
+                        output.accept(ModBlocks.DUSKWOOD_TRAPDOOR);
+                        output.accept(ModBlocks.DUSKWOOD_PRESSURE_PLATE);
+                        output.accept(ModBlocks.DUSKWOOD_BUTTON);
                         output.accept(ModBlocks.ANCIENT_OAK_WOOD);
                         output.accept(ModBlocks.ANCIENT_OAK_LOG);
                         output.accept(ModBlocks.HEARTWOOD_LOG);
                         output.accept(ModBlocks.HEARTWOOD_WOOD);
                         output.accept(ModBlocks.HEARTWOOD_PLANKS);
+                        output.accept(ModBlocks.HEARTWOOD_STAIRS);
+                        output.accept(ModBlocks.HEARTWOOD_SLAB);
+                        output.accept(ModBlocks.HEARTWOOD_FENCE);
+                        output.accept(ModBlocks.HEARTWOOD_FENCE_GATE);
+                        output.accept(ModBlocks.HEARTWOOD_DOOR);
+                        output.accept(ModBlocks.HEARTWOOD_TRAPDOOR);
+                        output.accept(ModBlocks.HEARTWOOD_PRESSURE_PLATE);
+                        output.accept(ModBlocks.HEARTWOOD_BUTTON);
                         output.accept(ModBlocks.HEMATITE_ORE);
                         output.accept(ModBlocks.DEEPSLATE_HEMATITE_ORE);
                         output.accept(ModBlocks.CHISELED_POLISHED_HEMATITE);
@@ -96,6 +123,7 @@ public class ModCreativeModeTabs {
                         output.accept(ModBlocks.END_SILVER_ORE);
                         output.accept(ModBlocks.RAW_SILVER_BLOCK);
                         output.accept(ModBlocks.SILVER_BLOCK);
+                        output.accept(ModBlocks.SILVER_BRICKS);
                         output.accept(ModBlocks.SANGUINITE_BLOCK);
 
                     }).build());

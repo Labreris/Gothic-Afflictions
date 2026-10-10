@@ -35,6 +35,8 @@ public class ModTags {
         // ITEM TAG CHECKLIST: 1. ADD IT HERE, 2. ADD TO ModItemTagProvider
         public static final TagKey<Item> STONECUTTABLE_HEMATITE = createTag("stonecuttable_hematite");
 
+        public static final TagKey<Item> STONECUTTABLE_SILVER = createTag("stonecuttable_silver");
+
         public static final TagKey<Item> MORTAR_CRUSHABLE_ITEMS = createTag("mortar_crushable_items");
 
         public static final TagKey<Item> SILVER_HELD_ITEMS = createTag("silver_held_items");

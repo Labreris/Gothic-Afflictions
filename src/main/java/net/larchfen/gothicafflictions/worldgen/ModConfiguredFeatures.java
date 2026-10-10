@@ -3,12 +3,14 @@ package net.larchfen.gothicafflictions.worldgen;
 import net.larchfen.gothicafflictions.GothicAfflictions;
 import net.larchfen.gothicafflictions.block.ModBlocks;
 import net.larchfen.gothicafflictions.worldgen.tree.ModTrunkPlacer;
+import net.minecraft.core.HolderSet;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.valueproviders.IntProvider;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
@@ -17,9 +19,12 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.feature.configurations.TreeConfiguration;
 import net.minecraft.world.level.levelgen.feature.featuresize.TwoLayersFeatureSize;
 import net.minecraft.world.level.levelgen.feature.foliageplacers.BlobFoliagePlacer;
+import net.minecraft.world.level.levelgen.feature.foliageplacers.SpruceFoliagePlacer;
 import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.ForkingTrunkPlacer;
 import net.minecraft.world.level.levelgen.feature.trunkplacers.GiantTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.StraightTrunkPlacer;
+import net.minecraft.world.level.levelgen.feature.trunkplacers.UpwardsBranchingTrunkPlacer;
 import net.minecraft.world.level.levelgen.structure.templatesystem.BlockMatchTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
@@ -33,6 +38,10 @@ public class ModConfiguredFeatures {
     public static final ResourceKey<ConfiguredFeature<?, ?>> END_SILVER_ORE_KEY = registerKey("end_silver_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_TALCUM_ORE_KEY = registerKey("talcum_ore");
     public static final ResourceKey<ConfiguredFeature<?, ?>> OVERWORLD_CALCITE_TALCUM_ORE_KEY = registerKey("calcite_talcum_ore");
+
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKWOOD_ORANGE_KEY = registerKey("duskwood_orange");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKWOOD_RED_KEY = registerKey("duskwood_red");
+    public static final ResourceKey<ConfiguredFeature<?, ?>> DUSKWOOD_BLACK_KEY = registerKey("duskwood_black");
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
 
@@ -71,6 +80,29 @@ public class ModConfiguredFeatures {
                 ModBlocks.END_SILVER_ORE.get().defaultBlockState(), 13));
 
         // TREES
+
+
+
+        register(context, DUSKWOOD_ORANGE_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LOG.get()),
+                new StraightTrunkPlacer(5,10,3),
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LEAVES_ORANGE.get()),
+                new SpruceFoliagePlacer(ConstantInt.of(4),ConstantInt.of(5),ConstantInt.of(10)),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+        register(context, DUSKWOOD_RED_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LOG.get()),
+                new StraightTrunkPlacer(5,10,3),
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LEAVES_RED.get()),
+                new SpruceFoliagePlacer(ConstantInt.of(4),ConstantInt.of(5),ConstantInt.of(10)),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
+
+        register(context, DUSKWOOD_BLACK_KEY, Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LOG.get()),
+                new StraightTrunkPlacer(5,10,3),
+                BlockStateProvider.simple(ModBlocks.DUSKWOOD_LEAVES_BLACK.get()),
+                new SpruceFoliagePlacer(ConstantInt.of(4),ConstantInt.of(5),ConstantInt.of(10)),
+                new TwoLayersFeatureSize(1, 0, 2)).build());
 
     }
 
